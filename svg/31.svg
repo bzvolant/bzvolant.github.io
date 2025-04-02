@@ -1,0 +1,24 @@
+<svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="a" x1="37" x2="35" y1="46" y2="17"
+            gradientTransform="matrix(1.29 0 0 1.29 -11.6 12.1)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#9dd5f2" offset="0" />
+            <stop stop-color="#daedf2" offset="1" />
+        </linearGradient>
+    </defs>
+    <path
+        d="m41.1 52.8c9.33 10.9 28.8 6.95 32.8-7.54-8.28 5.93-19.3 2.88-22.8-3.48-4.17-7.61-0.715-15.9 2.89-20.8-15.3 1.81-23.2 19.8-12.8 31.9z"
+        fill="url(#a)" stroke="#70b5ff" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="2">
+        <animateTransform fill="url(#a)" attributeName="transform" begin="-3" calcMode="spline"
+            dur="4s" keySplines=".2 0 .8 1 ; .2 0 .8 1" repeatCount="indefinite" type="rotate"
+            values="-10 53.5 44; 30 53.5 44; -10 53.5 44" />
+    </path>
+    <path
+        d="m70 39 -3.41-2.67-0.565 4.29-0.522-4.29-3.43 2.64 2.67-3.41-4.29-0.565 4.29-0.522-2.64-3.43 3.41 2.67 0.565-4.29 0.522 4.29 3.43-2.64-2.67 3.41 4.29 0.565-4.29 0.522z"
+        fill="none" stroke="#f6a823" stroke-linejoin="round" stroke-miterlimit="10"
+        stroke-width="1.8">
+        <animateTransform attributeName="transform" dur="3s" repeatCount="indefinite" type="rotate"
+            values="0 66.1 35; 360 66.1 35" />
+    </path>
+</svg>

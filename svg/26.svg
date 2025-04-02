@@ -1,0 +1,31 @@
+<svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="a" x1="37" x2="64" y1="33" y2="64"
+            gradientTransform="translate(5 -5) " gradientUnits="userSpaceOnUse">
+            <stop stop-color="#f3f7fe" offset="0" />
+            <stop stop-color="#b3d5ff" offset="1" />
+        </linearGradient>
+        <linearGradient id="c" x1="51" x2="69" y1="39" y2="57" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#f3f7fe" offset="0" />
+            <stop stop-color="#b3d5ff" offset="1" />
+        </linearGradient>
+
+    </defs>
+    <g stroke-miterlimit="10">
+        <path
+            d="m69 39c4-16-18-25-27-11-8-5-16 3-15 10-12 2-11 21 2 21 13 0 27 0 40 0 13 1 13-20 0-20z"
+            fill="url(#a)" stroke="#0170e5" stroke-width="2" />
+        <!-- <animateTransform additive="sum" attributeName="transform" begin="0" dur="3s"
+            repeatCount="indefinite" type="translate"
+            values="0 0 ; -10 0 ; 0 0"
+            keySplines="0.2 0 0.8 1;
+                        0.2 0 0.8 1"
+            calcMode="spline"--> /> <path
+            d="m36 59h23c7.5 0 8.8-12 1.1-12 1.2-5.3-4.3-9-8.5-5.8-4-6-16-4-16 6.4-7.3 0.31-7.1 11 0.15 11.4z"
+            fill="url(#c)" stroke="#0170e5" stroke-miterlimit="10" stroke-width="2">
+            <animateTransform fill="url(#c)" attributeName="transform" calcMode="spline" dur="4s"
+                keySplines=".2 0 .8 1 ; .2 0 .8 1" repeatCount="indefinite" type="translate"
+                values="-6 0; 8 0; -6 0" />
+        </path>
+    </g>
+</svg>
