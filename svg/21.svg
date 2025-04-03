@@ -28,7 +28,7 @@
 				0.2 0 0.8 1"
 				calcMode="spline" />
 		</path>
-		<path d="m20 22h21" stroke="#0170e5">
+		<path d="m20 24h21" stroke="#0170e5">
 			<animateTransform attributeName="transform" begin="-5s" dur="8s"
 				repeatCount="indefinite" type="translate" values="-1 0; 20 0; -1 0"
 				keySplines="0.2 0 0.8 1;
