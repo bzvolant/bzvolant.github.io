@@ -1,6 +1,6 @@
 <svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
 	<g fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4">
-		<path d="m26 58h38" stroke="#0170e5">
+		<path d="m26 56h38" stroke="#0170e5">
 			<animateTransform attributeName="transform" begin="0s" dur="4s"
 				repeatCount="indefinite" type="translate" values="-6 0; 14 0; -6 0"
 				keySplines="0.2 0 0.8 1;
