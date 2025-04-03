@@ -14,5 +14,13 @@
         <animate attributeName="opacity" dur="2s" repeatCount="indefinite"
             values="0;1;1;1;0" />     
 </path>
+<path d="m54 42-7.8-4.5m7.8 0-7.8 4.5m3.9-6.8v9" stroke="#70B5FF" stroke-linecap="round" stroke-width="3" transform="translate(-10, 11)">
+        <animateTransform additive="sum" attributeName="transform" dur="2s"
+            repeatCount="indefinite" type="translate" values="1 4; -3 30" />
+        <animateTransform additive="sum" attributeName="transform" dur="8s" repeatCount="indefinite"
+            type="rotate" values="0 50 40; 360 50 40" />
+        <animate attributeName="opacity" dur="2s" repeatCount="indefinite"
+            values="0;1;1;1;0" />     
+</path>
 
 </svg>

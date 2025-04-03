@@ -24,9 +24,9 @@
             d="m53.879 21c-14.889 1.8859-20.844 19.852-11.911 31.763 9.3302 10.918 28.785 6.9481 32.755-7.5436-5.9554 3.8711-17.866 6.154-22.829-2.4815-4.9629-8.6355-0.71465-15.881 1.8859-20.844z"
             fill="url(#a)" stroke="#70b5ff" stroke-linecap="round" stroke-linejoin="round"
             stroke-width="2">
-            <animateTransform fill="url(#a)" attributeName="transform" begin="-3" calcMode="spline"
+            <!-- <animateTransform fill="url(#a)" attributeName="transform" begin="-3" calcMode="spline"
                 dur="4s" keySplines=".2 0 .8 1 ; .2 0 .8 1" repeatCount="indefinite" type="rotate"
-                values="-10 54 21; 5 54 21; -10 54 21" />
+                values="-10 54 21; 5 54 21; -10 54 21" /> -->
         </path>
         <path
             d="m36 59h23c7.5 0 8.8-12 1.1-12 1.2-5.3-4.3-9-8.5-5.8-4-6-16-4-16 6.4-7.3 0.31-7.1 11 0.15 11.4z"

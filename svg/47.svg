@@ -17,12 +17,6 @@
 				type="translate" values="1 -5; -2 10" />
 			<animate attributeName="opacity" dur="0.7s" repeatCount="indefinite" values="0;1;1;0" />
 		</path>
-		<path d="m64 54-2 7">
-			<animateTransform attributeName="transform" begin="-0.4s" dur="0.7s"
-				repeatCount="indefinite" type="translate" values="1 -5; -2 10" />
-			<animate attributeName="opacity" begin="-0.4s" dur="0.7s" repeatCount="indefinite"
-				values="0;1;1;0" />
-		</path>
 		<path d="m71 54-2 7">
 			<animateTransform attributeName="transform" begin="-0.2s" dur="0.7s"
 				repeatCount="indefinite" type="translate" values="1 -5; -2 10" />
