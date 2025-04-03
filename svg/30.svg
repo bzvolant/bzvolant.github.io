@@ -14,21 +14,21 @@
 	<g stroke-miterlimit="10">
 		<g transform="translate(55,23.4)" fill="none" stroke="#f6a823" stroke-linecap="round"
 			stroke-width="4">
-			<path d="m0 0v-6.34m0 46v-6.34m-23-16.7h6.34m39.7 0h-6.34">
+			<path d="m0.09 16.6-0.09-22.9m0 46 0.09-23.1m-23.1 0.02 23.1-0.02m23 0.02-23-0.02">
 				<animateTransform additive="sum" attributeName="transform" dur="4s"
 					repeatCount="indefinite" type="translate" values="0 0 ; 0 2.4 ; 0 0" />
 				<animateTransform additive="sum" attributeName="transform" dur="4s"
 					repeatCount="indefinite" type="scale" values="1 1 ; .8 .8 ; 1 1" />
 			</path>
 			<path
-				d="m11.8 4.87 4.48-4.48m-32.5 32.5 4.48-4.48m-4.44-28.1 4.48 4.48m28.1 28.1-4.48-4.48">
+				d="m0.02 16.7 16.3-16.3m-32.5 32.5 16.2-16.2m-16.2-16.4 16.2 16.3m16.4 16.3-16.3-16.3">
 				<animateTransform additive="sum" attributeName="transform" begin="-2s" dur="4s"
 					repeatCount="indefinite" type="translate" values="0 0 ; 0 2.4 ; 0 0" />
 				<animateTransform additive="sum" attributeName="transform" begin="-2s" dur="4s"
 					repeatCount="indefinite" type="scale" values="1 1 ; .8 .8 ; 1 1" />
 			</path>
 		</g>
-		<circle cx="55" cy="40" r="16" fill="url(#a)" stroke="#f6a823" stroke-width="2" />
+		<circle cx="55" cy="40" r="13" fill="url(#a)" stroke="#f6a823" stroke-width="3" />
 		<path
 			d="m33.8 58.9h23c7.5 0 8.8-12 1.1-12 1.2-5.3-4.3-9-8.5-5.8-4-6-16-4-16 6.4-7.3 0.31-7.1 11 0.15 11.4z"
 			fill="url(#b)" stroke="#0170e5" stroke-width="2">
