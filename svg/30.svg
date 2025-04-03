@@ -28,7 +28,7 @@
 					repeatCount="indefinite" type="scale" values="1 1 ; .8 .8 ; 1 1" />
 			</path>
 		</g>
-		<circle cx="55" cy="40" r="13" fill="url(#a)" stroke="#f6a823" stroke-width="3" />
+		<circle cx="55" cy="40" r="15" fill="url(#a)" stroke="#f6a823" stroke-width="2" />
 		<path
 			d="m33.8 58.9h23c7.5 0 8.8-12 1.1-12 1.2-5.3-4.3-9-8.5-5.8-4-6-16-4-16 6.4-7.3 0.31-7.1 11 0.15 11.4z"
 			fill="url(#b)" stroke="#0170e5" stroke-width="2">
