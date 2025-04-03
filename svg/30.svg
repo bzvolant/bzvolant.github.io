@@ -17,12 +17,18 @@
 		</linearGradient>
 	</defs>
 	<g stroke-miterlimit="10">
+		<g transform="translate(55 24.6)" >
+			
 		<path
-			d="m55 23.2v-6.34m0 46v-6.34m11.8-28.4 4.48-4.48m-32.5 32.5 4.48-4.48m0-23.6-4.48-4.48m32.5 32.5-4.48-4.48m-34.8-11.8h6.34m39.7 0h-6.34"
+			d="m0 0v-6.34m0 46v-6.34m11.8-28.4 4.48-4.48m-32.5 32.5 4.48-4.48m0-23.6-4.48-4.48m32.5 32.5-4.48-4.48m-34.8-11.8h6.34m39.7 0h-6.34"
 			fill="none" stroke="#f6a823" stroke-linecap="round" stroke-width="4">
-			<animateTransform attributeName="transform" dur="6s" repeatCount="indefinite"
-				type="rotate" values="0 55 40; 360 55 40" />
+			<!-- <animateTransform attributeName="transform" dur="6s" repeatCount="indefinite"
+				type="rotate" values="0 55 40; 360 55 40" /> -->
+			<animateTransform attributeName="transform" type="scale" dur="4s" repeatCount="indefinite" values="1 1 ; .8 .8 ; 1 1"/>
+				
 		</path>
+				</g>
+
 		<circle cx="55" cy="40" r="16" fill="url(#a)" stroke="#f6a823" stroke-width="2" />
 		<path
 			d="m33.8 58.9h23c7.5 0 8.8-12 1.1-12 1.2-5.3-4.3-9-8.5-5.8-4-6-16-4-16 6.4-7.3 0.31-7.1 11 0.15 11.4z"
