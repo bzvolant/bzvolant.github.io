@@ -1,28 +1,40 @@
 <svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
 	<defs>
-		<linearGradient id="a" x1="12.3" x2="25.7" y1="17.3" y2="30.7" gradientTransform="matrix(1.56,0,0,1.56,35.2,2.53)" gradientUnits="userSpaceOnUse">
-			<stop stop-color="#ffda6c" offset="0"/>
-			<stop stop-color="#ffc043" offset="1"/>
+		<linearGradient id="a" x1="12.3" x2="25.7" y1="17.3" y2="30.7"
+			gradientTransform="matrix(1.56,0,0,1.56,35.2,2.53)" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#ffda6c" offset="0" />
+			<stop stop-color="#ffc043" offset="1" />
 		</linearGradient>
-		<linearGradient id="b" x1="51" x2="69" y1="39" y2="57" gradientTransform="translate(-2.16 -.0763)" gradientUnits="userSpaceOnUse">
-			<stop stop-color="#f3f7fe" offset="0"/>
-			<stop stop-color="#b3d5ff" offset="1"/>
+		<linearGradient id="b" x1="51" x2="69" y1="39" y2="57"
+			gradientTransform="translate(-2.16 -.0763)" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#f3f7fe" offset="0" />
+			<stop stop-color="#b3d5ff" offset="1" />
 		</linearGradient>
 	</defs>
 	<g stroke-miterlimit="10">
-		<g transform="translate(55,23.4)" fill="none" stroke="#f6a823" stroke-linecap="round" stroke-width="4">
+		<g transform="translate(55,23.4)" fill="none" stroke="#f6a823" stroke-linecap="round"
+			stroke-width="4">
 			<path d="m0 0v-6.34m0 46v-6.34m-23-16.7h6.34m39.7 0h-6.34">
-				<animateTransform additive="sum" attributeName="transform" dur="4s" repeatCount="indefinite" type="translate" values="0 0 ; 0 2.4 ; 0 0"/>
-				<animateTransform additive="sum" attributeName="transform" dur="4s" repeatCount="indefinite" type="scale" values="1 1 ; .8 .8 ; 1 1"/>
+				<animateTransform additive="sum" attributeName="transform" dur="4s"
+					repeatCount="indefinite" type="translate" values="0 0 ; 0 2.4 ; 0 0" />
+				<animateTransform additive="sum" attributeName="transform" dur="4s"
+					repeatCount="indefinite" type="scale" values="1 1 ; .8 .8 ; 1 1" />
 			</path>
-			<path d="m11.8 4.87 4.48-4.48m-32.5 32.5 4.48-4.48m-4.44-28.1 4.48 4.48m28.1 28.1-4.48-4.48">
-				<animateTransform additive="sum" attributeName="transform" dur="4s" repeatCount="indefinite" type="translate" values="0 0 ; 0 2.4 ; 0 0"/>
-				<animateTransform additive="sum" attributeName="transform" dur="4s" repeatCount="indefinite" type="scale" values="1 1 ; .8 .8 ; 1 1"/>
+			<path
+				d="m11.8 4.87 4.48-4.48m-32.5 32.5 4.48-4.48m-4.44-28.1 4.48 4.48m28.1 28.1-4.48-4.48">
+				<animateTransform additive="sum" attributeName="transform" begin="-2s" dur="4s"
+					repeatCount="indefinite" type="translate" values="0 0 ; 0 2.4 ; 0 0" />
+				<animateTransform additive="sum" attributeName="transform" begin="-2s" dur="4s"
+					repeatCount="indefinite" type="scale" values="1 1 ; .8 .8 ; 1 1" />
 			</path>
 		</g>
-		<circle cx="55" cy="40" r="16" fill="url(#a)" stroke="#f6a823" stroke-width="2"/>
-		<path d="m33.8 58.9h23c7.5 0 8.8-12 1.1-12 1.2-5.3-4.3-9-8.5-5.8-4-6-16-4-16 6.4-7.3 0.31-7.1 11 0.15 11.4z" fill="url(#b)" stroke="#0170e5" stroke-width="2">
-			<animateTransform fill="url(#c)" attributeName="transform" calcMode="spline" dur="4s" keySplines=".2 0 .8 1 ; .2 0 .8 1" repeatCount="indefinite" type="translate" values="-12 0; 6 0; -12 0"/>
+		<circle cx="55" cy="40" r="16" fill="url(#a)" stroke="#f6a823" stroke-width="2" />
+		<path
+			d="m33.8 58.9h23c7.5 0 8.8-12 1.1-12 1.2-5.3-4.3-9-8.5-5.8-4-6-16-4-16 6.4-7.3 0.31-7.1 11 0.15 11.4z"
+			fill="url(#b)" stroke="#0170e5" stroke-width="2">
+			<animateTransform fill="url(#c)" attributeName="transform" calcMode="spline" dur="4s"
+				keySplines=".2 0 .8 1 ; .2 0 .8 1" repeatCount="indefinite" type="translate"
+				values="-12 0; 6 0; -12 0" />
 		</path>
 	</g>
 </svg>
