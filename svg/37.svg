@@ -30,7 +30,7 @@
 				values="0;1;1;0" />
 		</path>
 	</g>
-	<path d="m47 45-6 17h6l-4 12 15-18h-8l6-11z" fill="#fff" stroke="#f6a823" stroke-width="2" stroke-miterlimit="10">
+	<path d="m47 45-6 17h6l-4 12 15-18h-8l6-11z" fill="#ffc96b" stroke="#f6a823" stroke-width="2" stroke-miterlimit="10">
 		<animate attributeName="opacity" dur="2s" repeatCount="indefinite"
 			values="1; 1; 1; 1; 1; 1; 0.1; 1; 0.1; 1; 1; 0.1; 1; 0.1; 1" />
 	</path>
