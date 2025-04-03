@@ -19,7 +19,7 @@
     </path>
 		<path d="m45.2 44.7-11-6.28m11 0-11 6.28m5.5-9.49v12.6" stroke="#70b5ff" stroke-width="4.21" stroke-linecap="round">
 			<animateTransform additive="sum" attributeName="transform" dur="4s"
-				repeatCount="indefinite" type="translate" values="-6 -6; 20 -4" />
+				repeatCount="indefinite" type="translate" values="-6 -6; 20 10" />
 			<animateTransform additive="sum" attributeName="transform" dur="4s"
 				repeatCount="indefinite" type="rotate" values="0 40 40; 360 40 40" />
 			<animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0;1;1;1;0" />
