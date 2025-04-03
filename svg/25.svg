@@ -1,7 +1,7 @@
 <svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
 	<g stroke-linecap="round">
 		<path
-			d="m49.8 37.1m15.6-7.07c0.339-3.21 3.39-5.79 6.79-5.47 3.39 0.321 6.11 3.21 6.11 6.43 0 3.86-3.39 6.43-6.79 6.43h-21.7"
+			d="m48.8 37.1m15.6-7.07c0.339-3.21 3.39-5.79 6.79-5.47 3.39 0.321 6.11 3.21 6.11 6.43 0 3.86-3.39 6.43-6.79 6.43h-21.7"
 			fill="none" stroke="#0170e5" stroke-dasharray="34, 6" stroke-linejoin="round"
 			stroke-miterlimit="10" stroke-width="4">
 			<animate attributeName="stroke-dashoffset" begin="-.8s" dur="6s"
