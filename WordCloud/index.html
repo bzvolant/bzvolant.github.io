@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Word Cloud</title>
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-cloud/build/d3.layout.cloud.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+  <link rel="preload" href="Volant-Semibold.woff2" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <style>
+    @font-face {
+      font-family: 'Volant-Semi';
+      src: url('Volant-Semibold.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Volant-Semi', sans-serif;
+      overflow: hidden;
+    }
+
+    .controls {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      z-index: 10;
+    }
+
+    .custom-button {
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Volant-Semi', sans-serif;
+      font-size: 16px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .custom-button:hover {
+      background-color: #333;
+    }
+
+    #upload {
+      display: none;
+    }
+
+    #wordcloudCanvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label for="upload" class="custom-button">انتخاب فایل CSV</label>
+    <button class="custom-button" onclick="downloadPNG()">دانلود به‌صورت PNG</button>
+  </div>
+
+  <input type="file" id="upload" accept=".csv">
+  <canvas id="wordcloudCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('wordcloudCanvas');
+    const ctx = canvas.getContext('2d');
+    let currentWords = [];
+    const padding = 48;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "black";
+      if (currentWords.length > 0) {
+        drawWordCloud(currentWords);
+      }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+
+    document.fonts.load("16px 'Volant-Semi'").then(() => {
+      ctx.font = "16px 'Volant-Semi'";
+      resizeCanvas();
+    });
+
+    document.getElementById('upload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      Papa.parse(file, {
+        header: true,
+        complete: function(results) {
+          currentWords = results.data
+            .filter(row => row["Word"] && row["Count"])
+            .map(row => ({
+              text: row["Word"],
+              count: +row["Count"]
+            }));
+
+          drawWordCloud(currentWords);
+        }
+      });
+    });
+
+    function drawWordCloud(wordsData) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const maxCount = Math.max(...wordsData.map(w => w.count));
+      const minFontSize = 10;
+      const maxFontSize = Math.min(canvas.width, canvas.height) / 10;
+
+      const words = wordsData.map(w => ({
+        text: w.text,
+        size: ((w.count / maxCount) * (maxFontSize - minFontSize)) + minFontSize
+      }));
+
+      const layout = d3.layout.cloud()
+        .size([canvas.width - padding * 2, canvas.height - padding * 2])
+        .words(words)
+        .padding(5)
+        .rotate(0)
+        .font("Volant-Semi")
+        .fontSize(d => d.size)
+        .on("end", draw);
+
+      layout.start();
+
+      function draw(words) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        words.forEach(word => {
+          ctx.save();
+          ctx.translate(canvas.width / 2 + word.x, canvas.height / 2 + word.y);
+          ctx.rotate(word.rotate * Math.PI / 180);
+          ctx.font = `${word.size}px 'Volant-Semi'`;
+          ctx.fillText(word.text, 0, 0);
+          ctx.restore();
+        });
+      }
+    }
+
+    function downloadPNG() {
+      const imgURI = canvas.toDataURL("image/png");
+      const a = document.createElement("a");
+      a.download = "wordcloud.png";
+      a.href = imgURI;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>
