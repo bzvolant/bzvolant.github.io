@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    @font-face {
+      font-family: Volant;
+      src: url(./fonts/Volant-Medium.ttf) format('truetype');
+    }
+    body {
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(144px, 1fr));
+      gap: 12px;
+      padding: 0;
+      width: 100%;
+      max-width: 1600px;
+    }
+
+    .grid-item {
+      background-color: white;
+      border: none;
+      text-align: center;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: auto;
+      max-width: 144px;
+    }
+
+    .grid-item span {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #aaa;
+      font-family: Volant;
+      font-size: 14px;
+      font-weight: Medium;
+
+    }
+    .button-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 5px 35px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #0070e8;
+            color: white;
+            border-radius: 2px;
+        }
+  </style>
+</head>
+<body>
+
+  <div id="container" class="grid-container"></div>
+  <div class="button-container">
+    <a href="index2.html"><button>Preview</button></a>
+</div>
+  <script>
+    const container = document.getElementById("container");
+
+    function loadSVGs() {
+      for (let i = 0; i <= 47; i++) {
+        const gridItem = document.createElement("div");
+        gridItem.classList.add("grid-item");
+
+        const img = document.createElement("img");
+        img.src = `./svg/${i}.svg`;
+        const numO = document.createElement("span");
+        numO.textContent = i;
+        numO.classList.add("numO");
+
+        gridItem.appendChild(img);
+        gridItem.appendChild(numO);
+        container.appendChild(gridItem);
+      }
+    }
+
+    loadSVGs();
+  </script>
+</body>
+</html>
