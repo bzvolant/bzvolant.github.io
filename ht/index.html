@@ -1,55 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halftone Maker</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: #f4f4f4;
+            flex-direction: row;
         }
 
         header {
+            color: #ccc;
+            text-transform: uppercase;
+            background-color: #f9f9f9;
             text-align: center;
             margin-bottom: 20px;
+            padding: 40px;
         }
 
-        canvas {
+        .canvas-wrapper {
+            padding-top: 20px;
+        }
+
+        .halftone-Canvas {
             border: 1px solid #ccc;
-            margin-bottom: 20px;
             max-width: 100%;
         }
 
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .controls label {
+        .content-wrapper {
+            flex: 4;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            margin-right: 20px;
+            max-height: 100vh;
         }
 
-        .controls input, .controls select, .controls button {
+        .controls-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .controls-wrapper label {
+            display: flex;
+            flex-direction: column;
+            color: #555;
+            position: relative;
+        }
+
+        .controls-wrapper label span {
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #333;
+        }
+
+        .controls-wrapper input,
+        .controls-wrapper select,
+        .controls-wrapper button {
             margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .controls-wrapper input:focus,
+        .controls-wrapper select:focus,
+        .controls-wrapper button:focus {
+            border-color: #888;
+            box-shadow: 0 0 4px rgba(136, 136, 136, 0.5);
+            outline: none;
+            cursor: pointer;
+        }
+
+        .controls-wrapper button {
+            background: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .controls-wrapper button:hover {
+            background: #0056b3;
         }
 
         .drop-zone {
+            background-color: #d7eaff;
             border: 2px dashed #ccc;
-            padding: 20px;
+            padding: 40px;
             text-align: center;
             margin-bottom: 20px;
             cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .drop-zone.dragover {
@@ -57,16 +107,20 @@
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <h1>Rectangular Halftone Maker</h1>
-    </header>
+    <div class="content-wrapper">
+        <!-- <header>
+            <h1>Rectangular Halftone Maker</h1>
+        </header> -->
 
-    <div class="drop-zone" id="dropZone">Drag and drop an image here or click to upload</div>
+        <div class="canvas-wrapper">
+            <canvas class="halftone-Canvas" width="1920" height="1080"></canvas>
+        </div>
+    </div>
 
-    <canvas id="halftoneCanvas" width="500" height="500"></canvas>
-
-    <div class="controls">
+    <div class="controls-wrapper">
+        <div class="drop-zone" id="dropZone">Drag and drop an image here or click to upload</div>
         <label>
             Horizontal Size:
             <input type="range" id="horizontalGridSize" min="2" max="100" value="50" step="0.1">
@@ -89,7 +143,6 @@
                 <option value="horizontal">Horizontal</option>
                 <option value="vertical">Vertical</option>
             </select>
-            <!-- <span id="brickStyleValue">None</span> -->
         </label>
         <label>
             Brightness:
@@ -158,10 +211,10 @@
             }
 
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 img = new Image();
                 if (!file.type.includes('svg')) {
-                    img.onload = function() {
+                    img.onload = function () {
                         console.log('Image loaded successfully, dimensions:', {
                             width: img.width,
                             height: img.height
@@ -172,7 +225,7 @@
                         drawHalftone();
                     };
                 }
-                img.onerror = function() {
+                img.onerror = function () {
                     alert('Failed to load the image. Please ensure the file is a valid image format.');
                 };
                 if (file.type === 'image/svg+xml') {
@@ -181,7 +234,7 @@
                     const url = URL.createObjectURL(svgBlob);
 
                     const tempImg = new Image();
-                    tempImg.onload = function() {
+                    tempImg.onload = function () {
                         console.log('Temporary image loaded for SVG rendering:', {
                             width: tempImg.width,
                             height: tempImg.height
@@ -203,7 +256,7 @@
 
                         img.src = pngDataUrl;
 
-                        img.onload = function() {
+                        img.onload = function () {
                             console.log('SVG converted to PNG and loaded successfully, dimensions:', {
                                 naturalWidth: img.naturalWidth,
                                 naturalHeight: img.naturalHeight
@@ -223,7 +276,7 @@
                     img.src = e.target.result;
                 }
             };
-            reader.onerror = function() {
+            reader.onerror = function () {
                 alert('Failed to read the file. Please try again.');
             };
             if (file.type === 'image/svg+xml') {
@@ -416,4 +469,5 @@
         }
     </script>
 </body>
+
 </html>
