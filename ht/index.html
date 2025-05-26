@@ -94,6 +94,16 @@
             </select>
             <!-- <span id="brickStyleValue">None</span> -->
         </label>
+        <label>
+            Brightness:
+            <input type="range" id="brightness" min="-100" max="100" value="0" step="1">
+            <span id="brightnessValue">0</span>
+        </label>
+        <label>
+            Contrast:
+            <input type="range" id="contrast" min="-100" max="100" value="0" step="1">
+            <span id="contrastValue">0</span>
+        </label>
         <button id="exportPNG">Export PNG</button>
         <button id="exportSVG">Export SVG</button>
     </div>
@@ -108,11 +118,13 @@
         const brickStyle = document.getElementById('brickStyle');
         const exportPNG = document.getElementById('exportPNG');
         const exportSVG = document.getElementById('exportSVG');
+        const brightnessControl = document.getElementById('brightness');
+        const contrastControl = document.getElementById('contrast');
 
         let img = null;
 
         // Add event listeners for grid size and line width controls
-        [horizontalGridSize, verticalGridSize, gridLineWidth, brickStyle].forEach(control => {
+        [horizontalGridSize, verticalGridSize, gridLineWidth, brickStyle, brightnessControl, contrastControl].forEach(control => {
             control.addEventListener(control.type === 'checkbox' ? 'change' : 'input', () => {
                 if (img) drawHalftone();
             });
@@ -224,6 +236,13 @@
             }
         }
 
+        function adjustBrightnessContrast(value, brightness, contrast) {
+            value = value + parseInt(brightness, 10);
+            const factor = (259 * (parseInt(contrast, 10) + 255)) / (255 * (259 - parseInt(contrast, 10)));
+            value = factor * (value - 128) + 128;
+            return Math.min(255, Math.max(0, value));
+        }
+
         function drawHalftone() {
             if (!img) {
                 console.error('No image loaded.');
@@ -234,6 +253,9 @@
             const verticalSize = parseInt(verticalGridSize.value, 10);
             const cols = Math.floor(canvas.width / horizontalSize);
             const rows = Math.floor(canvas.height / verticalSize);
+
+            const brightness = parseInt(brightnessControl.value, 10);
+            const contrast = parseInt(contrastControl.value, 10);
 
             // Create temporary canvas for image processing
             const tempCanvas = document.createElement('canvas');
@@ -254,17 +276,18 @@
             for (let y = 0; y < rows; y++) {
                 for (let x = 0; x < cols; x++) {
                     const pixelIndex = ((y * verticalSize) * canvas.width + (x * horizontalSize)) * 4;
-                    const r = data[pixelIndex];
-                    const g = data[pixelIndex + 1];
-                    const b = data[pixelIndex + 2];
+                    let r = data[pixelIndex];
+                    let g = data[pixelIndex + 1];
+                    let b = data[pixelIndex + 2];
                     const a = data[pixelIndex + 3] / 255;
 
-                    // Calculate brightness taking into account alpha channel
-                    // For fully transparent pixels (a=0), brightness will be 1 (white)
-                    // For fully opaque pixels (a=1), brightness will be based on RGB values
-                    const brightness = a === 0 ? 1 : ((r + g + b) / 3 / 255);
+                    r = adjustBrightnessContrast(r, brightness, contrast);
+                    g = adjustBrightnessContrast(g, brightness, contrast);
+                    b = adjustBrightnessContrast(b, brightness, contrast);
 
-                    if (brightness < 0.5 && a > 0.01) {
+                    const brightnessValue = a === 0 ? 1 : ((r + g + b) / 3 / 255);
+
+                    if (brightnessValue < 0.5 && a > 0.01) {
                         let xPos = x * horizontalSize;
                         let yPos = y * verticalSize;
                         const width = horizontalSize - parseInt(gridLineWidth.value, 10);
@@ -381,6 +404,8 @@
         verticalGridSize.addEventListener('input', updateControlValues);
         gridLineWidth.addEventListener('input', updateControlValues);
         brickStyle.addEventListener('change', updateControlValues);
+        brightnessControl.addEventListener('input', updateControlValues);
+        contrastControl.addEventListener('input', updateControlValues);
 
         // Initialize control values display
         updateControlValues();
@@ -389,6 +414,8 @@
             document.getElementById('horizontalSizeValue').textContent = horizontalGridSize.value;
             document.getElementById('verticalSizeValue').textContent = verticalGridSize.value;
             document.getElementById('gapValue').textContent = gridLineWidth.value;
+            document.getElementById('brightnessValue').textContent = brightnessControl.value;
+            document.getElementById('contrastValue').textContent = contrastControl.value;
         }
     </script>
 </body>
