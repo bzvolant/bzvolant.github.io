@@ -1,0 +1,499 @@
+[
+  {
+    "name": "مرکز تحقیقاتی هسته‌ای تهران – چمران",
+    "latitude": 35.7325,
+    "longitude": 51.368,
+    "markerColor": "red",
+    "type": "oil"
+  },
+  {
+    "name": "لویزان – مظنون به فعالیت هسته‌ای",
+    "latitude": 35.747,
+    "longitude": 51.498,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "پایگاه هوایی دوشان‌تپه",
+    "latitude": 35.728,
+    "longitude": 51.5025,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "قرارگاه ثارالله – تهران",
+    "latitude": 35.7446,
+    "longitude": 51.3843,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "پایگاه هوایی فتح کرج (OIIF)",
+    "latitude": 35.7674,
+    "longitude": 50.944,
+    "markerColor": "red",
+    "type": "oil"
+  },
+  {
+    "name": "مرکز تحقیقات هسته‌ای کرج – هشتگرد",
+    "latitude": 35.9592,
+    "longitude": 50.6928,
+    "markerColor": "red",
+    "type": "nuclear"
+  },
+  {
+    "name": "تأسیسات دفع زباله هسته‌ای کرج",
+    "latitude": 35.9565,
+    "longitude": 50.7,
+    "markerColor": "red",
+    "type": "utility"
+  },
+  {
+    "name": "کارخانه ساخت پهپاد – کرج",
+    "latitude": 35.842,
+    "longitude": 50.938,
+    "markerColor": "red",
+    "type": "target"
+  },
+  {
+    "name": "Fordow – تأسیسات غنی‌سازی اورانیوم",
+    "latitude": 34.7,
+    "longitude": 50.996,
+    "markerColor": "red",
+    "type": "utility"
+  },
+  {
+    "name": "سپاه علی‌بن‌ابی‌طالب – قم",
+    "latitude": 34.6469,
+    "longitude": 50.8761,
+    "markerColor": "red",
+    "type": "oil"
+  },
+  {
+    "name": "پادگان خیبر – قم",
+    "latitude": 34.604,
+    "longitude": 51.003,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "پایگاه بسیج شهید فهمیده – شهرک قدس قم",
+    "latitude": 34.6425,
+    "longitude": 50.871,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "مرکز فناوری هسته‌ای اصفهان (INTC)",
+    "latitude": 32.6257,
+    "longitude": 51.6945,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "مرکز تبدیل اورانیوم UCF",
+    "latitude": 32.5,
+    "longitude": 51.85,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "کارخانه تولید سوخت و پلاکت",
+    "latitude": 32.51,
+    "longitude": 51.87,
+    "markerColor": "red",
+    "type": "nuclear"
+  },
+  {
+    "name": "تأسیسات نگهداری زباله هسته‌ای اصفهان",
+    "latitude": 32.48,
+    "longitude": 51.89,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "نطنز – مرکز غنی‌سازی اورانیوم",
+    "latitude": 33.7266,
+    "longitude": 51.8606,
+    "markerColor": "red",
+    "type": "utility"
+  },
+  {
+    "name": "راکتور آب سنگین اراک",
+    "latitude": 34.4036,
+    "longitude": 49.2224,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "کارخانه آب سنگین",
+    "latitude": 34.405,
+    "longitude": 49.23,
+    "markerColor": "red",
+    "type": "nuclear"
+  },
+  {
+    "name": "پدافند هوایی اراک",
+    "latitude": 34.42,
+    "longitude": 49.21,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "پادگان مالک اشتر – اراک",
+    "latitude": 34.4185,
+    "longitude": 49.228,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "پادگان شهید ملکی – اراک",
+    "latitude": 34.414,
+    "longitude": 49.234,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "پایگاه هوایی شیراز (7th TAB)",
+    "latitude": 29.5398,
+    "longitude": 52.5895,
+    "markerColor": "red",
+    "type": "nuclear"
+  },
+  {
+    "name": "تیپ ۵۵ هوابرد شیراز",
+    "latitude": 29.63,
+    "longitude": 52.545,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "ستاد فرماندهی هوایی شیراز",
+    "latitude": 29.61,
+    "longitude": 52.583,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "کارخانه موشکی شیراز",
+    "latitude": 29.624,
+    "longitude": 52.56,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "پادگان نظامی – تهران، بلوار دریا",
+    "latitude": 35.782,
+    "longitude": 51.3365,
+    "markerColor": "red",
+    "type": "nuclear"
+  },
+  {
+    "name": "خاتم‌الانبیا – پروژه پتروشیمی دماوند، شهرک غرب",
+    "latitude": 35.767,
+    "longitude": 51.374,
+    "markerColor": "red",
+    "type": "oil"
+  },
+  {
+    "name": "پژوهشکده قرارگاه خاتم‌الانبیا – بزرگراه بابایی",
+    "latitude": 35.7665,
+    "longitude": 51.519,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "قرارگاه پدافند هوایی خاتم‌الانبیا – اتوبان بسیج",
+    "latitude": 35.645,
+    "longitude": 51.496,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "دفتر استخدام نیروی هوایی – شیراز، بلوار مدرس",
+    "latitude": 29.6175,
+    "longitude": 52.5265,
+    "markerColor": "red",
+    "type": "nuclear"
+  },
+  {
+    "name": "دفتر استخدام – اصفهان، خیابان جی",
+    "latitude": 32.6842,
+    "longitude": 51.7331,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "دفتر استخدام – تبریز، جاده آذرشهر",
+    "latitude": 38.0211,
+    "longitude": 46.219,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "پایگاه نوژه – کبودرآهنگ، همدان",
+    "latitude": 35.2,
+    "longitude": 48.705,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "پایگاه شکاری – بین دزفول و اندیمشک",
+    "latitude": 32.3833,
+    "longitude": 48.4166,
+    "markerColor": "red",
+    "type": "target"
+  },
+  {
+    "name": "پدافند بوشهر – خیابان سنگی",
+    "latitude": 28.9225,
+    "longitude": 50.83,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "پدافند مشهد – خیابان نخ‌ریسی",
+    "latitude": 36.2972,
+    "longitude": 59.6115,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "پدافند بابلسر – جاده بابلسر به ساری",
+    "latitude": 36.7,
+    "longitude": 52.65,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "پدافند اراک – جاده خمین",
+    "latitude": 34.0611,
+    "longitude": 49.6988,
+    "markerColor": "red",
+    "type": "nuclear"
+  },
+  {
+    "name": "دفتر استخدام کرمانشاه – شهید کشوری",
+    "latitude": 34.33,
+    "longitude": 47.12,
+    "markerColor": "red",
+    "type": "killed"
+  },
+  {
+    "name": "پدافند هوایی اهواز – اتوبان شهید ستاری",
+    "latitude": 31.302,
+    "longitude": 48.673,
+    "markerColor": "red",
+    "type": "injured"
+  },
+  {
+    "name": "اهواز – کیانپارس، خیابان مطهری غربی",
+    "latitude": 31.313,
+    "longitude": 48.67,
+    "markerColor": "red",
+    "type": "military"
+  },
+  {
+    "name": "پدافند هوایی تبریز – جاده آذرشهر",
+    "latitude": 38.0211,
+    "longitude": 46.219,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "پادگان لشکر ۳۱ عاشورا – تبریز",
+    "latitude": 38.079,
+    "longitude": 46.289,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پادگان لاکان – رشت",
+    "latitude": 37.245,
+    "longitude": 49.5885,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "سپاه قدس گیلان – رشت",
+    "latitude": 37.2785,
+    "longitude": 49.5855,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پادگان ارتش – ساری",
+    "latitude": 36.558,
+    "longitude": 53.0485,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "سپاه کربلا مازندران – ساری",
+    "latitude": 36.5635,
+    "longitude": 53.059,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "تیپ ۷۷ پیاده ارتش – مشهد",
+    "latitude": 36.265,
+    "longitude": 59.61,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "قرارگاه سپاه امام رضا – مشهد",
+    "latitude": 36.29,
+    "longitude": 59.61,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پادگان شهید مدنی – اهواز",
+    "latitude": 31.3175,
+    "longitude": 48.673,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "پایگاه چهارم شکاری – اهواز",
+    "latitude": 31.318,
+    "longitude": 48.681,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پادگان ابوذر – کرمانشاه",
+    "latitude": 34.347,
+    "longitude": 47.0765,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "لشکر ۸۱ زرهی – کرمانشاه",
+    "latitude": 34.33,
+    "longitude": 47.103,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "تیپ ۸۸ زرهی – زاهدان",
+    "latitude": 29.485,
+    "longitude": 60.85,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "قرارگاه قدس سپاه – زاهدان",
+    "latitude": 29.48,
+    "longitude": 60.862,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پایگاه نیروی دریایی سپاه – بندرعباس",
+    "latitude": 27.187,
+    "longitude": 56.278,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "منطقه یکم نداجا – بندرعباس",
+    "latitude": 27.19,
+    "longitude": 56.29,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پایگاه هوایی شهید نوژه – همدان",
+    "latitude": 34.8692,
+    "longitude": 48.55,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "سپاه کردستان – سنندج",
+    "latitude": 35.311,
+    "longitude": 46.998,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پادگان آموزشی ارتش – ایلام",
+    "latitude": 33.637,
+    "longitude": 46.418,
+    "markerColor": "green",
+    "type": "target"
+  },
+  {
+    "name": "پادگان ارتش – خرم‌آباد",
+    "latitude": 33.487,
+    "longitude": 48.343,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "تیپ ۲۳۰ ارتش – گرگان",
+    "latitude": 36.83,
+    "longitude": 54.48,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "سپاه اردبیل – اردبیل",
+    "latitude": 38.25,
+    "longitude": 48.3,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "تیپ پدافند هوایی – بوشهر",
+    "latitude": 28.918,
+    "longitude": 50.832,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "پادگان ارتش – قزوین",
+    "latitude": 36.2815,
+    "longitude": 50.0175,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "پادگان سپاه – زنجان",
+    "latitude": 36.6769,
+    "longitude": 48.4872,
+    "markerColor": "green",
+    "type": "nuclear"
+  },
+  {
+    "name": "پادگان نظامی – بیرجند",
+    "latitude": 32.8648,
+    "longitude": 59.2162,
+    "markerColor": "green",
+    "type": "killed"
+  },
+  {
+    "name": "سپاه خراسان شمالی – بجنورد",
+    "latitude": 37.4725,
+    "longitude": 57.315,
+    "markerColor": "green",
+    "type": "injured"
+  },
+  {
+    "name": "پادگان ارتش – یاسوج",
+    "latitude": 30.659,
+    "longitude": 51.591,
+    "markerColor": "green",
+    "type": "military"
+  },
+  {
+    "name": "پادگان آموزشی ارتش – کرمان",
+    "latitude": 30.283,
+    "longitude": 57.083,
+    "markerColor": "green",
+    "type": "nuclear"
+  }
+]
