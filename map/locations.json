@@ -4,496 +4,709 @@
     "latitude": 35.7325,
     "longitude": 51.368,
     "markerColor": "red",
-    "type": "oil"
+    "type": "oil",
+    "timestamp": "2025-06-14T21:07:32.875323",
+    "scale": 5,
+    "notes": "blackout in area"
   },
   {
     "name": "لویزان – مظنون به فعالیت هسته‌ای",
     "latitude": 35.747,
     "longitude": 51.498,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T16:11:41.139924",
+    "scale": 7,
+    "notes": "communications lost"
   },
   {
     "name": "پایگاه هوایی دوشان‌تپه",
     "latitude": 35.728,
     "longitude": 51.5025,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-14T06:10:34.054469",
+    "scale": 10,
+    "notes": "army boss injured"
   },
   {
     "name": "قرارگاه ثارالله – تهران",
     "latitude": 35.7446,
     "longitude": 51.3843,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-15T22:05:10.455254",
+    "scale": 9,
+    "notes": "missile strike"
   },
   {
     "name": "پایگاه هوایی فتح کرج (OIIF)",
     "latitude": 35.7674,
     "longitude": 50.944,
     "markerColor": "red",
-    "type": "oil"
+    "type": "oil",
+    "timestamp": "2025-06-14T13:02:28.453028",
+    "scale": 10,
+    "notes": "army boss injured"
   },
   {
     "name": "مرکز تحقیقات هسته‌ای کرج – هشتگرد",
     "latitude": 35.9592,
     "longitude": 50.6928,
     "markerColor": "red",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-13T21:33:00.521566",
+    "scale": 7,
+    "notes": "communications lost"
   },
   {
     "name": "تأسیسات دفع زباله هسته‌ای کرج",
     "latitude": 35.9565,
     "longitude": 50.7,
     "markerColor": "red",
-    "type": "utility"
+    "type": "utility",
+    "timestamp": "2025-06-15T13:48:48.759108",
+    "scale": 9,
+    "notes": "civilian casualties"
   },
   {
     "name": "کارخانه ساخت پهپاد – کرج",
     "latitude": 35.842,
     "longitude": 50.938,
     "markerColor": "red",
-    "type": "target"
+    "type": "target",
+    "timestamp": "2025-06-15T01:07:44.052981",
+    "scale": 6,
+    "notes": "communications lost"
   },
   {
     "name": "Fordow – تأسیسات غنی‌سازی اورانیوم",
     "latitude": 34.7,
     "longitude": 50.996,
     "markerColor": "red",
-    "type": "utility"
+    "type": "utility",
+    "timestamp": "2025-06-15T17:25:40.264949",
+    "scale": 4,
+    "notes": "family killed"
   },
   {
     "name": "سپاه علی‌بن‌ابی‌طالب – قم",
     "latitude": 34.6469,
     "longitude": 50.8761,
     "markerColor": "red",
-    "type": "oil"
+    "type": "oil",
+    "timestamp": "2025-06-13T13:29:54.885088",
+    "scale": 5,
+    "notes": "missile strike"
   },
   {
     "name": "پادگان خیبر – قم",
     "latitude": 34.604,
     "longitude": 51.003,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-13T16:01:56.358763",
+    "scale": 9,
+    "notes": "airstrike confirmed"
   },
   {
     "name": "پایگاه بسیج شهید فهمیده – شهرک قدس قم",
     "latitude": 34.6425,
     "longitude": 50.871,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-14T23:52:03.061673",
+    "scale": 2,
+    "notes": "commander wounded"
   },
   {
     "name": "مرکز فناوری هسته‌ای اصفهان (INTC)",
     "latitude": 32.6257,
     "longitude": 51.6945,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-14T08:00:00.695760",
+    "scale": 4,
+    "notes": "communications lost"
   },
   {
     "name": "مرکز تبدیل اورانیوم UCF",
     "latitude": 32.5,
     "longitude": 51.85,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T17:46:19.375158",
+    "scale": 7,
+    "notes": "communications lost"
   },
   {
     "name": "کارخانه تولید سوخت و پلاکت",
     "latitude": 32.51,
     "longitude": 51.87,
     "markerColor": "red",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-14T00:48:32.413871",
+    "scale": 9,
+    "notes": "explosion reported"
   },
   {
     "name": "تأسیسات نگهداری زباله هسته‌ای اصفهان",
     "latitude": 32.48,
     "longitude": 51.89,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-14T19:25:22.839440",
+    "scale": 9,
+    "notes": "blackout in area"
   },
   {
     "name": "نطنز – مرکز غنی‌سازی اورانیوم",
     "latitude": 33.7266,
     "longitude": 51.8606,
     "markerColor": "red",
-    "type": "utility"
+    "type": "utility",
+    "timestamp": "2025-06-15T01:40:48.581205",
+    "scale": 6,
+    "notes": "airstrike confirmed"
   },
   {
     "name": "راکتور آب سنگین اراک",
     "latitude": 34.4036,
     "longitude": 49.2224,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T20:53:36.477436",
+    "scale": 6,
+    "notes": "nuclear site hit"
   },
   {
     "name": "کارخانه آب سنگین",
     "latitude": 34.405,
     "longitude": 49.23,
     "markerColor": "red",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-13T22:05:06.934972",
+    "scale": 3,
+    "notes": "family killed"
   },
   {
     "name": "پدافند هوایی اراک",
     "latitude": 34.42,
     "longitude": 49.21,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-13T20:36:48.487873",
+    "scale": 7,
+    "notes": "airstrike confirmed"
   },
   {
     "name": "پادگان مالک اشتر – اراک",
     "latitude": 34.4185,
     "longitude": 49.228,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-14T18:43:55.745661",
+    "scale": 9,
+    "notes": "missile strike"
   },
   {
     "name": "پادگان شهید ملکی – اراک",
     "latitude": 34.414,
     "longitude": 49.234,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-14T06:26:55.192465",
+    "scale": 3,
+    "notes": "commander wounded"
   },
   {
     "name": "پایگاه هوایی شیراز (7th TAB)",
     "latitude": 29.5398,
     "longitude": 52.5895,
     "markerColor": "red",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-15T22:16:31.192456",
+    "scale": 1,
+    "notes": "nuclear site hit"
   },
   {
     "name": "تیپ ۵۵ هوابرد شیراز",
     "latitude": 29.63,
     "longitude": 52.545,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-15T10:54:30.156019",
+    "scale": 5,
+    "notes": "explosion reported"
   },
   {
     "name": "ستاد فرماندهی هوایی شیراز",
     "latitude": 29.61,
     "longitude": 52.583,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-13T10:43:22.611487",
+    "scale": 10,
+    "notes": "family killed"
   },
   {
     "name": "کارخانه موشکی شیراز",
     "latitude": 29.624,
     "longitude": 52.56,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-14T12:24:17.452371",
+    "scale": 5,
+    "notes": "family killed"
   },
   {
     "name": "پادگان نظامی – تهران، بلوار دریا",
     "latitude": 35.782,
     "longitude": 51.3365,
     "markerColor": "red",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-15T18:37:50.166555",
+    "scale": 3,
+    "notes": "civilian casualties"
   },
   {
     "name": "خاتم‌الانبیا – پروژه پتروشیمی دماوند، شهرک غرب",
     "latitude": 35.767,
     "longitude": 51.374,
     "markerColor": "red",
-    "type": "oil"
+    "type": "oil",
+    "timestamp": "2025-06-15T21:20:47.827230",
+    "scale": 3,
+    "notes": "blackout in area"
   },
   {
     "name": "پژوهشکده قرارگاه خاتم‌الانبیا – بزرگراه بابایی",
     "latitude": 35.7665,
     "longitude": 51.519,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-13T19:28:29.360392",
+    "scale": 3,
+    "notes": "army boss injured"
   },
   {
     "name": "قرارگاه پدافند هوایی خاتم‌الانبیا – اتوبان بسیج",
     "latitude": 35.645,
     "longitude": 51.496,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-14T02:12:05.545988",
+    "scale": 9,
+    "notes": "civilian casualties"
   },
   {
     "name": "دفتر استخدام نیروی هوایی – شیراز، بلوار مدرس",
     "latitude": 29.6175,
     "longitude": 52.5265,
     "markerColor": "red",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-13T05:04:06.680677",
+    "scale": 8,
+    "notes": "site under siege"
   },
   {
     "name": "دفتر استخدام – اصفهان، خیابان جی",
     "latitude": 32.6842,
     "longitude": 51.7331,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-15T20:35:49.302126",
+    "scale": 4,
+    "notes": "communications lost"
   },
   {
     "name": "دفتر استخدام – تبریز، جاده آذرشهر",
     "latitude": 38.0211,
     "longitude": 46.219,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-14T11:35:23.715581",
+    "scale": 5,
+    "notes": "explosion reported"
   },
   {
     "name": "پایگاه نوژه – کبودرآهنگ، همدان",
     "latitude": 35.2,
     "longitude": 48.705,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-13T07:00:38.936699",
+    "scale": 5,
+    "notes": "site under siege"
   },
   {
     "name": "پایگاه شکاری – بین دزفول و اندیمشک",
     "latitude": 32.3833,
     "longitude": 48.4166,
     "markerColor": "red",
-    "type": "target"
+    "type": "target",
+    "timestamp": "2025-06-13T03:28:04.692563",
+    "scale": 3,
+    "notes": "airstrike confirmed"
   },
   {
     "name": "پدافند بوشهر – خیابان سنگی",
     "latitude": 28.9225,
     "longitude": 50.83,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-14T14:05:13.766282",
+    "scale": 8,
+    "notes": "army boss injured"
   },
   {
     "name": "پدافند مشهد – خیابان نخ‌ریسی",
     "latitude": 36.2972,
     "longitude": 59.6115,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-13T20:19:20.931042",
+    "scale": 9,
+    "notes": "missile strike"
   },
   {
     "name": "پدافند بابلسر – جاده بابلسر به ساری",
     "latitude": 36.7,
     "longitude": 52.65,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-13T18:18:42.879088",
+    "scale": 5,
+    "notes": "missile strike"
   },
   {
     "name": "پدافند اراک – جاده خمین",
     "latitude": 34.0611,
     "longitude": 49.6988,
     "markerColor": "red",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-14T18:43:44.951489",
+    "scale": 7,
+    "notes": "communications lost"
   },
   {
     "name": "دفتر استخدام کرمانشاه – شهید کشوری",
     "latitude": 34.33,
     "longitude": 47.12,
     "markerColor": "red",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-14T11:17:17.169845",
+    "scale": 8,
+    "notes": "airstrike confirmed"
   },
   {
     "name": "پدافند هوایی اهواز – اتوبان شهید ستاری",
     "latitude": 31.302,
     "longitude": 48.673,
     "markerColor": "red",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-13T07:06:14.613631",
+    "scale": 4,
+    "notes": "site under siege"
   },
   {
     "name": "اهواز – کیانپارس، خیابان مطهری غربی",
     "latitude": 31.313,
     "longitude": 48.67,
     "markerColor": "red",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-13T11:44:47.191473",
+    "scale": 10,
+    "notes": "site under siege"
   },
   {
     "name": "پدافند هوایی تبریز – جاده آذرشهر",
     "latitude": 38.0211,
     "longitude": 46.219,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T19:25:10.369927",
+    "scale": 7,
+    "notes": "commander wounded"
   },
   {
     "name": "پادگان لشکر ۳۱ عاشورا – تبریز",
     "latitude": 38.079,
     "longitude": 46.289,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-14T16:41:29.815560",
+    "scale": 1,
+    "notes": "communications lost"
   },
   {
     "name": "پادگان لاکان – رشت",
     "latitude": 37.245,
     "longitude": 49.5885,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-14T19:40:15.854467",
+    "scale": 10,
+    "notes": "fuel depot ablaze"
   },
   {
     "name": "سپاه قدس گیلان – رشت",
     "latitude": 37.2785,
     "longitude": 49.5855,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-15T12:41:11.243456",
+    "scale": 1,
+    "notes": "site under siege"
   },
   {
     "name": "پادگان ارتش – ساری",
     "latitude": 36.558,
     "longitude": 53.0485,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-13T10:58:18.376131",
+    "scale": 7,
+    "notes": "commander wounded"
   },
   {
     "name": "سپاه کربلا مازندران – ساری",
     "latitude": 36.5635,
     "longitude": 53.059,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-15T08:48:24.912908",
+    "scale": 8,
+    "notes": "airstrike confirmed"
   },
   {
     "name": "تیپ ۷۷ پیاده ارتش – مشهد",
     "latitude": 36.265,
     "longitude": 59.61,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T01:27:35.036582",
+    "scale": 1,
+    "notes": "communications lost"
   },
   {
     "name": "قرارگاه سپاه امام رضا – مشهد",
     "latitude": 36.29,
     "longitude": 59.61,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-14T10:26:32.027466",
+    "scale": 2,
+    "notes": "missile strike"
   },
   {
     "name": "پادگان شهید مدنی – اهواز",
     "latitude": 31.3175,
     "longitude": 48.673,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-13T14:08:38.024545",
+    "scale": 9,
+    "notes": "civilian casualties"
   },
   {
     "name": "پایگاه چهارم شکاری – اهواز",
     "latitude": 31.318,
     "longitude": 48.681,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-13T08:39:33.154011",
+    "scale": 4,
+    "notes": "army boss injured"
   },
   {
     "name": "پادگان ابوذر – کرمانشاه",
     "latitude": 34.347,
     "longitude": 47.0765,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T12:09:00.893897",
+    "scale": 1,
+    "notes": "civilian casualties"
   },
   {
     "name": "لشکر ۸۱ زرهی – کرمانشاه",
     "latitude": 34.33,
     "longitude": 47.103,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-13T10:39:07.283615",
+    "scale": 10,
+    "notes": "nuclear site hit"
   },
   {
     "name": "تیپ ۸۸ زرهی – زاهدان",
     "latitude": 29.485,
     "longitude": 60.85,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T12:30:33.389182",
+    "scale": 1,
+    "notes": "nuclear site hit"
   },
   {
     "name": "قرارگاه قدس سپاه – زاهدان",
     "latitude": 29.48,
     "longitude": 60.862,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-14T15:42:55.682302",
+    "scale": 3,
+    "notes": "communications lost"
   },
   {
     "name": "پایگاه نیروی دریایی سپاه – بندرعباس",
     "latitude": 27.187,
     "longitude": 56.278,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T13:30:53.395886",
+    "scale": 10,
+    "notes": "airstrike confirmed"
   },
   {
     "name": "منطقه یکم نداجا – بندرعباس",
     "latitude": 27.19,
     "longitude": 56.29,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-13T04:31:37.485672",
+    "scale": 1,
+    "notes": "blackout in area"
   },
   {
     "name": "پایگاه هوایی شهید نوژه – همدان",
     "latitude": 34.8692,
     "longitude": 48.55,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-13T03:18:03.234840",
+    "scale": 7,
+    "notes": "civilian casualties"
   },
   {
     "name": "سپاه کردستان – سنندج",
     "latitude": 35.311,
     "longitude": 46.998,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-14T05:56:30.787183",
+    "scale": 5,
+    "notes": "blackout in area"
   },
   {
     "name": "پادگان آموزشی ارتش – ایلام",
     "latitude": 33.637,
     "longitude": 46.418,
     "markerColor": "green",
-    "type": "target"
+    "type": "target",
+    "timestamp": "2025-06-13T22:55:49.133562",
+    "scale": 3,
+    "notes": "site under siege"
   },
   {
     "name": "پادگان ارتش – خرم‌آباد",
     "latitude": 33.487,
     "longitude": 48.343,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-15T06:47:42.637589",
+    "scale": 5,
+    "notes": "civilian casualties"
   },
   {
     "name": "تیپ ۲۳۰ ارتش – گرگان",
     "latitude": 36.83,
     "longitude": 54.48,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-13T21:46:50.258248",
+    "scale": 6,
+    "notes": "blackout in area"
   },
   {
     "name": "سپاه اردبیل – اردبیل",
     "latitude": 38.25,
     "longitude": 48.3,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-13T18:55:32.155444",
+    "scale": 7,
+    "notes": "blackout in area"
   },
   {
     "name": "تیپ پدافند هوایی – بوشهر",
     "latitude": 28.918,
     "longitude": 50.832,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T16:06:43.412512",
+    "scale": 6,
+    "notes": "army boss injured"
   },
   {
     "name": "پادگان ارتش – قزوین",
     "latitude": 36.2815,
     "longitude": 50.0175,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-14T04:10:37.051934",
+    "scale": 7,
+    "notes": "family killed"
   },
   {
     "name": "پادگان سپاه – زنجان",
     "latitude": 36.6769,
     "longitude": 48.4872,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-15T14:45:14.173670",
+    "scale": 4,
+    "notes": "explosion reported"
   },
   {
     "name": "پادگان نظامی – بیرجند",
     "latitude": 32.8648,
     "longitude": 59.2162,
     "markerColor": "green",
-    "type": "killed"
+    "type": "killed",
+    "timestamp": "2025-06-13T06:10:56.751662",
+    "scale": 2,
+    "notes": "site under siege"
   },
   {
     "name": "سپاه خراسان شمالی – بجنورد",
     "latitude": 37.4725,
     "longitude": 57.315,
     "markerColor": "green",
-    "type": "injured"
+    "type": "injured",
+    "timestamp": "2025-06-13T12:00:54.700772",
+    "scale": 4,
+    "notes": "army boss injured"
   },
   {
     "name": "پادگان ارتش – یاسوج",
     "latitude": 30.659,
     "longitude": 51.591,
     "markerColor": "green",
-    "type": "military"
+    "type": "military",
+    "timestamp": "2025-06-15T06:01:22.486370",
+    "scale": 3,
+    "notes": "nuclear site hit"
   },
   {
     "name": "پادگان آموزشی ارتش – کرمان",
     "latitude": 30.283,
     "longitude": 57.083,
     "markerColor": "green",
-    "type": "nuclear"
+    "type": "nuclear",
+    "timestamp": "2025-06-15T01:28:54.701799",
+    "scale": 10,
+    "notes": "family killed"
   }
 ]

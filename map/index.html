@@ -31,6 +31,14 @@
         <select id="typeFilter">
             <option value="">All</option>
         </select>
+        <label for="timeFilter">Filter by Time:</label>
+        <select id="timeFilter">
+            <option value="">All</option>
+            <option value="1">Last 24 Hours</option>
+            <option value="2">Last 2 Days</option>
+            <option value="3">Last 3 Days</option>
+            <option value="7">Last 7 Days</option>
+        </select>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -46,6 +54,7 @@
             .then(locations => {
                 const uniqueTypes = [...new Set(locations.map(location => location.type))];
                 const typeFilterDropdown = document.getElementById('typeFilter');
+                const timeFilterDropdown = document.getElementById('timeFilter');
 
                 uniqueTypes.forEach(type => {
                     const option = document.createElement('option');
@@ -70,13 +79,30 @@
                         });
 
                         const marker = L.marker([location.latitude, location.longitude], { icon }).addTo(map);
-                        marker.bindPopup(location.name);
+                        marker.bindPopup(`<strong>${location.name}</strong><br>${location.notes}`);
                     });
                 };
 
-                typeFilterDropdown.addEventListener('change', () => {
+                const filterLocations = () => {
                     const selectedType = typeFilterDropdown.value;
-                    const filteredLocations = selectedType ? filterFeatures(locations, { type: selectedType }) : locations;
+                    const selectedTime = timeFilterDropdown.value;
+
+                    let filteredLocations = locations;
+
+                    if (selectedType) {
+                        filteredLocations = filterFeatures(filteredLocations, { type: selectedType });
+                    }
+
+                    if (selectedTime) {
+                        const daysAgo = parseInt(selectedTime, 10);
+                        const cutoffDate = new Date();
+                        cutoffDate.setDate(cutoffDate.getDate() - daysAgo);
+
+                        filteredLocations = filteredLocations.filter(location => {
+                            const locationDate = new Date(location.timestamp);
+                            return locationDate >= cutoffDate;
+                        });
+                    }
 
                     const urlParams = new URLSearchParams(window.location.search);
                     if (selectedType) {
@@ -84,10 +110,20 @@
                     } else {
                         urlParams.delete('type');
                     }
+
+                    if (selectedTime) {
+                        urlParams.set('time', selectedTime);
+                    } else {
+                        urlParams.delete('time');
+                    }
+
                     window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
 
                     updateMap(filteredLocations);
-                });
+                };
+
+                typeFilterDropdown.addEventListener('change', filterLocations);
+                timeFilterDropdown.addEventListener('change', filterLocations);
 
                 updateMap(locations);
             });
