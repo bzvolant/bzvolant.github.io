@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div id="map"></div>
+    <div class="filter-container">
+        <div class="filter-group" id="siteTypeFilterContainer">
+            <label>Filter by Site Type:</label>
+            <!-- Checkboxes will be dynamically added here -->
+        </div>
+        <div class="filter-group">
+            <label for="timeFilter">Filter by Time:</label>
+            <select id="timeFilter">
+                <option value="">All</option>
+                <option value="1">Last 24 Hours</option>
+                <option value="2">Last 2 Days</option>
+                <option value="3">Last 3 Days</option>
+                <option value="7">Last 7 Days</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>
+                <input type="checkbox" id="filter-casualties">
+                Casualties
+            </label>
+        </div>
+    </div>
+
+    <!-- Information Section -->
+    <div id="infoSection">
+        <h2>Location Information</h2>
+        <p>Click on a marker to view detailed information about the location.</p>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
