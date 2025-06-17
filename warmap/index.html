@@ -6,17 +6,19 @@
     <title>map</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
 </head>
 <body>
-    <div id="map"></div>
+    <div id="map" class="map"></div>
     <div class="filter-container">
         <div class="filter-group" id="siteTypeFilterContainer">
-            <label>Filter by Site Type:</label>
+            <label class="filter-label">Filter by Site Type:</label>
             <!-- Checkboxes will be dynamically added here -->
         </div>
         <div class="filter-group">
-            <label for="timeFilter">Filter by Time:</label>
-            <select id="timeFilter">
+            <label for="timeFilter" class="filter-label">Filter by Time:</label>
+            <select id="timeFilter" class="dropdown">
                 <option value="">All</option>
                 <option value="1">Last 24 Hours</option>
                 <option value="2">Last 2 Days</option>
@@ -25,20 +27,20 @@
             </select>
         </div>
         <div class="filter-group">
-            <label>
-                <input type="checkbox" id="filter-casualties">
-                Casualties
-            </label>
+            <input type="checkbox" id="filter-casualties" class="checkbox">
+            <label for="filter-casualties" class="filter-label">Casualties</label>
         </div>
     </div>
 
     <!-- Information Section -->
-    <div id="infoSection">
-        <h2>Location Information</h2>
-        <p>Click on a marker to view detailed information about the location.</p>
+    <div id="infoSection" class="info-section">
+        <h2 class="info-title">Location Information</h2>
+        <p class="info-text">Click on a marker to view detailed information about the location.</p>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="cluster.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
