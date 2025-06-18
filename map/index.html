@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .filter-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .filter-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="filter-container">
+        <div class="filter-group" id="typeFilterContainer">
+            <label>Filter by Type:</label>
+            <!-- Checkboxes will be dynamically added here -->
+        </div>
+        <div class="filter-group">
+            <label for="timeFilter">Filter by Time:</label>
+            <select id="timeFilter">
+                <option value="">All</option>
+                <option value="1">Last 24 Hours</option>
+                <option value="2">Last 2 Days</option>
+                <option value="3">Last 3 Days</option>
+                <option value="7">Last 7 Days</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map', { attributionControl: false }).setView([32.4279, 53.6880], 6);
+
+        L.tileLayer('https://api.maptiler.com/maps/ed349839-de1f-47a1-8141-12b8d65c537d/{z}/{x}/{y}.png?key=pOZklUXrqCoxcxehsMzC', {
+            maxZoom: 18
+        }).addTo(map);
+
+        fetch('locations.json')
+            .then(response => response.json())
+            .then(locations => {
+                const uniqueTypes = [...new Set(locations.map(location => location.type))];
+                const typeFilterContainer = document.getElementById('typeFilterContainer');
+                const timeFilterDropdown = document.getElementById('timeFilter');
+
+                // Create checkboxes for each type
+                uniqueTypes.forEach(type => {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.value = type;
+                    checkbox.id = `type-${type}`;
+
+                    const label = document.createElement('label');
+                    label.htmlFor = `type-${type}`;
+                    label.textContent = type;
+
+                    const wrapper = document.createElement('div');
+                    wrapper.style.display = 'flex';
+                    wrapper.style.alignItems = 'center';
+                    wrapper.appendChild(checkbox);
+                    wrapper.appendChild(label);
+
+                    typeFilterContainer.appendChild(wrapper);
+                });
+
+                const updateMap = (filteredLocations) => {
+                    map.eachLayer(layer => {
+                        if (layer instanceof L.Marker || layer instanceof L.Circle) {
+                            map.removeLayer(layer);
+                        }
+                    });
+
+                    filteredLocations.forEach(location => {
+                        const icon = L.icon({
+                            iconUrl: `svg/${location.type}.svg`,
+                            iconSize: [30, 30],
+                            iconAnchor: [15, 15],
+                            popupAnchor: [0, -15]
+                        });
+
+                        // Use Coordinates field for marker location
+                        let lat = null, lng = null;
+                        if (location.Coordinates) {
+                            const coords = location.Coordinates.split(',').map(c => parseFloat(c.trim()));
+                            if (coords.length === 2 && !isNaN(coords[0]) && !isNaN(coords[1])) {
+                                lat = coords[0];
+                                lng = coords[1];
+                            }
+                        }
+                        if (lat !== null && lng !== null) {
+                            const marker = L.marker([lat, lng], { icon }).addTo(map);
+                            marker.bindPopup(`<strong>${location.name}</strong><br>${location.notes}`);
+                        }
+                    });
+                };
+
+                const filterLocations = () => {
+                    const selectedTypes = Array.from(typeFilterContainer.querySelectorAll('input[type=checkbox]:checked')).map(cb => cb.value);
+                    const selectedTime = timeFilterDropdown.value;
+
+                    let filteredLocations = locations;
+                    if (selectedTypes.length > 0) {
+                        filteredLocations = filteredLocations.filter(location => selectedTypes.includes(location.type));
+                    }
+                    if (selectedTime) {
+                        const daysAgo = parseInt(selectedTime, 10);
+                        const cutoffDate = new Date();
+                        cutoffDate.setDate(cutoffDate.getDate() - daysAgo);
+                        filteredLocations = filteredLocations.filter(location => {
+                            // Use the 'date' field (YYYY-MM-DD)
+                            let dateObj = null;
+                            if (location.date) {
+                                dateObj = new Date(location.date);
+                            }
+                            return dateObj && dateObj >= cutoffDate;
+                        });
+                    }
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    if (selectedTypes.length > 0) {
+                        urlParams.set('type', selectedTypes.join(','));
+                    } else {
+                        urlParams.delete('type');
+                    }
+
+                    if (selectedTime) {
+                        urlParams.set('time', selectedTime);
+                    } else {
+                        urlParams.delete('time');
+                    }
+
+                    window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
+
+                    updateMap(filteredLocations);
+                };
+
+                typeFilterContainer.addEventListener('change', filterLocations);
+                timeFilterDropdown.addEventListener('change', filterLocations);
+
+                updateMap(locations);
+            });
+
+        function filterFeatures(features, { type }) {
+            return features.filter(f => {
+                if (type && f.type !== type) return false;
+                return true;
+            });
+        }
+    </script>
+</body>
+</html>

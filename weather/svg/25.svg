@@ -1,0 +1,23 @@
+<svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+	<g stroke-linecap="round">
+		<path
+			d="m48.8 37.1m15.6-7.07c0.339-3.21 3.39-5.79 6.79-5.47 3.39 0.321 6.11 3.21 6.11 6.43 0 3.86-3.39 6.43-6.79 6.43h-29.7"
+			fill="none" stroke="#0170e5" stroke-dasharray="34, 6" stroke-linejoin="round"
+			stroke-miterlimit="10" stroke-width="4">
+			<animate attributeName="stroke-dashoffset" begin="-.8s" dur="6s"
+				repeatCount="indefinite" values="-40; 40" />
+		</path>
+		<path d="m58 52c3 3 8 2 9.5-1.5 1.5-4-1-8-5.5-8h-27.2" fill="none" stroke="#0170e5"
+			stroke-dasharray="36, 6" stroke-miterlimit="10" stroke-width="4">
+			<animate attributeName="stroke-dashoffset" begin="-1s" dur="5s" repeatCount="indefinite"
+				values="-42; 42" />
+		</path>
+		<path d="m45.2 44.7-11-6.28m11 0-11 6.28m5.5-9.49v12.6" stroke="#70b5ff" stroke-width="4.21">
+			<animateTransform additive="sum" attributeName="transform" dur="4s"
+				repeatCount="indefinite" type="translate" values="-6 -6; 20 10" />
+			<animateTransform additive="sum" attributeName="transform" dur="4s"
+				repeatCount="indefinite" type="rotate" values="0 40 40; 360 40 40" />
+			<animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0;1;1;1;0" />
+		</path>
+	</g>
+</svg>

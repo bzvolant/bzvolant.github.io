@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Tracer</title>
+    <script src="tracer.js"></script>
+</head>
+<body>
+    <h1>Image Tracer</h1>
+    <div id="svgcontainer" style="border: 1px solid #ccc; width: 500px; height: 500px; margin: 20px auto;"></div>
+    <input type="file" id="imageInput" accept="image/*" style="display: block; margin: 20px auto;" />
+    <script>
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    ImageTracer.imageToSVG(
+                        e.target.result,
+                        function(svgstr) {
+                            const svgContainer = document.getElementById('svgcontainer');
+                            svgContainer.innerHTML = '';
+                            const svgElement = new DOMParser().parseFromString(svgstr, 'image/svg+xml').documentElement;
+
+                            const screenHeight = window.innerHeight;
+                            const aspectRatio = svgElement.viewBox.baseVal.width / svgElement.viewBox.baseVal.height;
+                            svgElement.setAttribute('height', screenHeight);
+                            svgElement.setAttribute('width', screenHeight * aspectRatio);
+
+                            svgContainer.appendChild(svgElement);
+                        }, 
+                        'posterized2'
+                    );
+
+                    ImageTracer.imageToTracedata(
+                        e.target.result,
+                        function(tracedata) {
+                            console.log('Tracedata:', tracedata);
+                        },
+                        {}
+                    );
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

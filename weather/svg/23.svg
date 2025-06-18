@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 80 80">
+    <defs>
+    </defs>
+    <path d="m 36 41 m 23 -11 c 0.5 -5 5 -9 10 -8.5 5 0.5 9 5 9 10 0 6 -5 10 -10 10 h -32"
+        fill="none" stroke="#0170e5" stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10" stroke-dasharray="34 6" stroke-width="4">
+        <animate attributeName="stroke-dashoffset" begin="-.8s" dur="6s" repeatCount="indefinite"
+            values="-40; 40" />
+                
+    </path>
+    <path d="m 58 56 c 3 3 8 2 9.5 -1.5 1.5 -4 -1 -8 -5.5 -8 h -35" 
+        fill="none" stroke="#0170e5"
+        stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="36 6" stroke-width="4">
+        <animate attributeName="stroke-dashoffset" begin="-1s" dur="5s" repeatCount="indefinite"
+            values="-42; 42" />
+
+    </path>
+</svg>

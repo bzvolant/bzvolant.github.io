@@ -1,0 +1,39 @@
+<svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+	<g fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4">
+		<path d="m26 56h38" stroke="#0170e5">
+			<animateTransform attributeName="transform" begin="0s" dur="4s"
+				repeatCount="indefinite" type="translate" values="-6 0; 14 0; -6 0"
+				keySplines="0.2 0 0.8 1;
+				0.2 0 0.8 1"
+				calcMode="spline" />
+		</path>
+		<path d="m20 48h18" stroke="#70b5ff">
+			<animateTransform attributeName="transform" begin="-1.4s" dur="8s"
+				repeatCount="indefinite" type="translate" values="-6 0; 18 0; -6 0"
+				keySplines="0.2 0 0.8 1;
+				0.2 0 0.8 1"
+				calcMode="spline" />
+		</path>
+		<path d="m44 40h27" stroke="#0170e5">
+			<animateTransform attributeName="transform" begin="-2.8s" dur="8s"
+				repeatCount="indefinite" type="translate" values="-28 0; 7 0; -28 0"
+				keySplines="0.2 0 0.8 1;
+				0.2 0 0.8 1"
+				calcMode="spline" />
+		</path>
+		<path d="m26 32h39" stroke="#70b5ff">
+			<animateTransform attributeName="transform" begin="-3.6s" dur="6s"
+				repeatCount="indefinite" type="translate" values="-6 0; 6 0; -6 0"
+				keySplines="0.2 0 0.8 1;
+				0.2 0 0.8 1"
+				calcMode="spline" />
+		</path>
+		<path d="m20 24h21" stroke="#0170e5">
+			<animateTransform attributeName="transform" begin="-5s" dur="8s"
+				repeatCount="indefinite" type="translate" values="-1 0; 20 0; -1 0"
+				keySplines="0.2 0 0.8 1;
+				0.2 0 0.8 1"
+				calcMode="spline" />
+		</path>
+	</g>
+</svg>

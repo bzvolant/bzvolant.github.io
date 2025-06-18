@@ -1,0 +1,47 @@
+<svg version="1.1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="a" x1="37" x2="35" y1="46" y2="17"
+            gradientTransform="matrix(1.29 0 0 1.29 -6.5 12.1)" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#c3c3c3" offset="0" />
+			<stop stop-color="#ededed" offset="1" />
+        </linearGradient>
+        <filter id="melt">
+            <feGaussianBlur in="SourceGraphic" result="y" stdDeviation="1.1" />
+            <feColorMatrix in="y" result="z"
+                values="
+            1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 100 -30" />
+            <!-- <feBlend in="SourceGraphic" in2="z" /> -->
+        </filter>
+
+    </defs>
+    <path
+        d="m46.2 52.8c9.33 10.9 28.8 6.95 32.8-7.54-8.28 5.93-19.3 2.88-22.8-3.48-4.17-7.61-0.715-15.9 2.89-20.8-15.3 1.81-23.2 19.8-12.8 31.9z"
+        fill="url(#a)" stroke="#7d7d7d" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="2"></path>
+    <g stroke="#f6a823" stroke-linejoin="round" stroke-miterlimit="10">
+        <!-- <path d="m33.4 30.4-3.41-2.67-0.565 4.29-0.522-4.29-3.43 2.64 2.67-3.41-4.29-0.565
+        4.29-0.522-2.64-3.43 3.41 2.67 0.565-4.29 0.522 4.29 3.43-2.64-2.67 3.41 4.29 0.565-4.29
+        0.522z" fill="none" stroke-width="1.8">
+			<animateTransform attributeName="transform" dur="3s" repeatCount="indefinite" type="rotate"
+        values="0 66.1 35; 360 66.1 35"/>
+		</path> -->
+        <g transform="translate(69 33)" filter="url(#melt)" stroke-linecap="round" stroke-width="2">
+
+            <path d="m0 -6.5v13" fill="#0170e5">
+                <animateTransform attributeName="transform" dur="2s" repeatCount="indefinite"
+                    type="scale"
+                    values="1 1; 1 0.6; 1 1" />
+            </path>
+            <path d="m4.5 0h-9" fill="#0170e5">
+                <animateTransform attributeName="transform" dur="2s" begin="-.1" repeatCount="indefinite"
+                    type="scale"
+                    values="1 1;0.6 1; 1 1" />
+
+            </path>
+        </g>
+
+    </g>
+</svg>

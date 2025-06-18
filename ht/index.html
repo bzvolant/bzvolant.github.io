@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halftone Maker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: row;
+        }
+
+        header {
+            color: #ccc;
+            text-transform: uppercase;
+            background-color: #f9f9f9;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 40px;
+        }
+
+        .canvas-wrapper {
+            padding-top: 20px;
+        }
+
+        .halftone-Canvas {
+            border: 1px solid #ccc;
+            max-width: 100%;
+        }
+
+        .content-wrapper {
+            flex: 4;
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+            max-height: 100vh;
+        }
+
+        .controls-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .controls-wrapper label {
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <div id="canvasWrapper" class="canvas-wrapper">
+            <canvas id="halftoneCanvas" class="halftone-Canvas" width="1920" height="1080"></canvas>
+        </div>
+    </div>
+
+    <div id="controlswrapper" class="controls-wrapper">
+        <div id="dropZone" class="drop-zone">Drag and drop an image here or click to upload</div>
+        <label>
+            Horizontal Size:
+            <input type="range" id="horizontalGridSize" min="2" max="100" value="50" step="0.1">
+            <span id="horizontalSizeValue">50</span>
+        </label>
+        <label>
+            Vertical Size:
+            <input type="range" id="verticalGridSize" min="2" max="100" value="50" step="0.1">
+            <span id="verticalSizeValue">50</span>
+        </label>
+        <label>
+            Gap:
+            <input type="range" id="gridLineWidth" min="0" max="50" value="5" step="0.1">
+            <span id="gapValue">5</span>
+        </label>
+        <label>
+            Brick:
+            <select id="brickStyle">
+                <option value="none">None</option>
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+            </select>
+        </label>
+        <label>
+            Brightness:
+            <input type="range" id="brightness" min="-100" max="100" value="0" step="1">
+            <span id="brightnessValue">0</span>
+        </label>
+        <label>
+            Contrast:
+            <input type="range" id="contrast" min="-100" max="100" value="0" step="1">
+            <span id="contrastValue">0</span>
+        </label>
+        <button id="exportPNG">Export PNG</button>
+        <button id="exportSVG">Export SVG</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('halftoneCanvas');
+        const ctx = canvas.getContext('2d');
+        const dropZone = document.getElementById('dropZone');
+        const horizontalGridSize = document.getElementById('horizontalGridSize');
+        const verticalGridSize = document.getElementById('verticalGridSize');
+        const gridLineWidth = document.getElementById('gridLineWidth');
+        const brickStyle = document.getElementById('brickStyle');
+        const exportPNG = document.getElementById('exportPNG');
+        const exportSVG = document.getElementById('exportSVG');
+        const brightnessControl = document.getElementById('brightness');
+        const contrastControl = document.getElementById('contrast');
+
+        let img = null;
+
+        [horizontalGridSize, verticalGridSize, gridLineWidth, brickStyle, brightnessControl, contrastControl].forEach(control => {
+            control.addEventListener(control.type === 'checkbox' ? 'change' : 'input', () => {
+                if (img) drawHalftone();
+            });
+        });
+
+        dropZone.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*, .svg';
+            input.onchange = handleImage;
+            input.click();
+        });
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            handleImage({ target: { files: e.dataTransfer.files } });
+        });
+
+        function handleImage(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                alert('No file selected. Please choose an image file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                img = new Image();
+                if (!file.type.includes('svg')) {
+                    img.onload = function() {
+                        console.log('Image loaded successfully, dimensions:', {
+                            width: img.width,
+                            height: img.height
+                        });
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        drawHalftone();
+                    };
+                }
+                img.onerror = function() {
+                    alert('Failed to load the image. Please ensure the file is a valid image format.');
+                };
+                if (file.type === 'image/svg+xml') {
+                    const svgBlob = new Blob([e.target.result], { type: 'image/svg+xml' });
+                    const url = URL.createObjectURL(svgBlob);
+
+                    const tempImg = new Image();
+                    tempImg.onload = function() {
+                        console.log('Temporary image loaded for SVG rendering:', {
+                            width: tempImg.width,
+                            height: tempImg.height
+                        });
+
+                        const scaleFactor = Math.max(800 / tempImg.width, 800 / tempImg.height, 1);
+                        const tempCanvas = document.createElement('canvas');
+                        tempCanvas.width = tempImg.width * scaleFactor;
+                        tempCanvas.height = tempImg.height * scaleFactor;
+                        const tempCtx = tempCanvas.getContext('2d');
+
+                        tempCtx.drawImage(tempImg, 0, 0, tempCanvas.width, tempCanvas.height);
+
+                        const pngDataUrl = tempCanvas.toDataURL('image/png');
+                        console.log('PNG Data URL generated from SVG:', pngDataUrl.substring(0, 100) + '...');
+
+                        img.src = pngDataUrl;
+
+                        img.onload = function() {
+                            console.log('SVG converted to PNG and loaded successfully, dimensions:', {
+                                naturalWidth: img.naturalWidth,
+                                naturalHeight: img.naturalHeight
+                            });
+                            canvas.width = img.naturalWidth;
+                            canvas.height = img.naturalHeight;
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            drawHalftone();
+                        };
+
+                        URL.revokeObjectURL(url);
+                    };
+
+                    tempImg.src = url;
+                } else {
+                    img.src = e.target.result;
+                }
+            };
+            reader.onerror = function() {
+                alert('Failed to read the file. Please try again.');
+            };
+            if (file.type === 'image/svg+xml') {
+                reader.readAsText(file);
+            } else {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function adjustBrightnessContrast(value, brightness, contrast) {
+            value = value + parseInt(brightness, 10);
+            const factor = (259 * (parseInt(contrast, 10) + 255)) / (255 * (259 - parseInt(contrast, 10)));
+            value = factor * (value - 128) + 128;
+            return Math.min(255, Math.max(0, value));
+        }
+
+        function drawHalftone() {
+            if (!img) {
+                console.error('No image loaded.');
+                return;
+            }
+
+            const horizontalSize = parseInt(horizontalGridSize.value, 10);
+            const verticalSize = parseInt(verticalGridSize.value, 10);
+            const cols = Math.floor(canvas.width / horizontalSize);
+            const rows = Math.floor(canvas.height / verticalSize);
+
+            const brightness = parseInt(brightnessControl.value, 10);
+            const contrast = parseInt(contrastControl.value, 10);
+
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            tempCtx.drawImage(img, 0, 0);
+            const imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'black';
+
+            for (let y = 0; y < rows; y++) {
+                for (let x = 0; x < cols; x++) {
+                    const pixelIndex = ((y * verticalSize) * canvas.width + (x * horizontalSize)) * 4;
+                    let r = data[pixelIndex];
+                    let g = data[pixelIndex + 1];
+                    let b = data[pixelIndex + 2];
+                    const a = data[pixelIndex + 3] / 255;
+
+                    r = adjustBrightnessContrast(r, brightness, contrast);
+                    g = adjustBrightnessContrast(g, brightness, contrast);
+                    b = adjustBrightnessContrast(b, brightness, contrast);
+
+                    const brightnessValue = a === 0 ? 1 : ((r + g + b) / 3 / 255);
+
+                    if (brightnessValue < 0.5 && a > 0.01) {
+                        let xPos = x * horizontalSize;
+                        let yPos = y * verticalSize;
+                        const width = horizontalSize - parseInt(gridLineWidth.value, 10);
+                        const height = verticalSize - parseInt(gridLineWidth.value, 10);
+
+                        const brickPattern = brickStyle.value;
+                        if (brickPattern === 'horizontal' && y % 2 === 1) {
+                            xPos += horizontalSize / 2;
+                        } else if (brickPattern === 'vertical' && x % 2 === 1) {
+                            yPos += verticalSize / 2;
+                        }
+
+                        ctx.fillRect(
+                            xPos + (horizontalSize - width) / 2,
+                            yPos + (verticalSize - height) / 2,
+                            width,
+                            height
+                        );
+                    }
+                }
+            }
+        }
+
+        exportPNG.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'halftone.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+
+        exportSVG.addEventListener('click', () => {
+            const horizontalSize = parseInt(horizontalGridSize.value, 10);
+            const verticalSize = parseInt(verticalGridSize.value, 10);
+            const cols = Math.floor(canvas.width / horizontalSize);
+            const rows = Math.floor(canvas.height / verticalSize);
+
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            tempCtx.drawImage(img, 0, 0);
+            const imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            let svgContent = `<svg xmlns='http://www.w3.org/2000/svg' width='${canvas.width}' height='${canvas.height}'>`;
+
+            for (let y = 0; y < rows; y++) {
+                for (let x = 0; x < cols; x++) {
+                    const pixelIndex = ((y * verticalSize) * canvas.width + (x * horizontalSize)) * 4;
+                    const r = data[pixelIndex];
+                    const g = data[pixelIndex + 1];
+                    const b = data[pixelIndex + 2];
+                    const a = data[pixelIndex + 3] / 255;
+                    const brightness = a === 0 ? 1 : ((r + g + b) / 3 / 255);
+
+                    if (brightness < 0.5 && a > 0.01) {
+                        const width = horizontalSize - parseInt(gridLineWidth.value, 10);
+                        const height = verticalSize - parseInt(gridLineWidth.value, 10);
+                        let xPos = x * horizontalSize;
+                        let yPos = y * verticalSize;
+
+                        const brickPattern = brickStyle.value;
+                        if (brickPattern === 'horizontal' && y % 2 === 1) {
+                            xPos += horizontalSize / 2;
+                        } else if (brickPattern === 'vertical' && x % 2 === 1) {
+                            yPos += verticalSize / 2;
+                        }
+
+                        xPos += (horizontalSize - width) / 2;
+                        yPos += (verticalSize - height) / 2;
+                        svgContent += `<rect x='${xPos}' y='${yPos + (verticalSize - height) / 2}' width='${width}' height='${height}' fill='black' />`;
+                    }
+                }
+            }
+
+            svgContent += '</svg>';
+
+            const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'halftone.svg';
+            link.click();
+
+            URL.revokeObjectURL(url);
+        });
+
+        function updateGridLineWidthMax() {
+            const minGridSize = Math.min(horizontalGridSize.value, verticalGridSize.value);
+            gridLineWidth.max = minGridSize;
+            if (gridLineWidth.value > minGridSize) {
+                gridLineWidth.value = minGridSize;
+            }
+        }
+
+        horizontalGridSize.addEventListener('input', updateGridLineWidthMax);
+        verticalGridSize.addEventListener('input', updateGridLineWidthMax);
+
+        updateGridLineWidthMax();
+
+        horizontalGridSize.addEventListener('input', updateControlValues);
+        verticalGridSize.addEventListener('input', updateControlValues);
+        gridLineWidth.addEventListener('input', updateControlValues);
+        brickStyle.addEventListener('change', updateControlValues);
+        brightnessControl.addEventListener('input', updateControlValues);
+        contrastControl.addEventListener('input', updateControlValues);
+
+        updateControlValues();
+
+        function updateControlValues() {
+            document.getElementById('horizontalSizeValue').textContent = horizontalGridSize.value;
+            document.getElementById('verticalSizeValue').textContent = verticalGridSize.value;
+            document.getElementById('gapValue').textContent = gridLineWidth.value;
+            document.getElementById('brightnessValue').textContent = brightnessControl.value;
+            document.getElementById('contrastValue').textContent = contrastControl.value;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .mainContainer {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .backI {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .widgetContainer {
+            position: absolute;
+            bottom: 8.9%;
+            left: 0;
+            width: 18.6%;
+            max-width: 360px;
+            height: auto;
+            aspect-ratio: 36.2 / 14.5;
+        }
+
+        .svgDiv {
+            width: 25%;
+            max-width: 80px;
+            position: relative;
+            left: 68%;
+            top: 40%;
+            filter: blur(0.5px);
+        }
+        .button-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 5px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #0070e8;
+            color: white;
+            border-radius: 2px;
+        }
+  </style>
+
+    </style>
+</head>
+
+<body>
+    <div id="mainContainer" class="mainContainer">
+        <img class="backI" src="back2.png">
+        <div class="widgetContainer">
+            <div id="svgDiv" class="svgDiv">
+                <img src="./svg/30.svg">
+            </div>
+
+        </div>
+    </div>
+    <div class="button-container">
+        <a href="index.html"><button>All</button></a>
+    </div>
+    
+</body>
+
+</html>
