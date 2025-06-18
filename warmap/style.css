@@ -1,73 +1,31 @@
-@font-face {
-    font-family: 'Volant';
-    src: url('volant.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-body {
-    font-family: 'Volant', sans-serif;
-    background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
-    color: #333;
-}
 
-.map {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .filter-container {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.filter-group {
-    margin-bottom: 10px;
-}
-
-.filter-label {
-    font-weight: bold;
-    color: #555;
-}
-
-.dropdown {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 14px;
-    color: #333;
-}
-
-.checkbox {
-    accent-color: #007bff;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
 }
 
 .info-section {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    color: #333;
-}
-
-.info-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 10px;
-}
-
-.info-text {
-    font-size: 14px;
-    color: #555;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }

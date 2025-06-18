@@ -1,0 +1,210 @@
+[
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 34.2242186, "lng": 48.36440260000001 },
+    "date": "2025-06-13T16:16:00.000Z",
+    "details": null,
+    "displayName": "Nahavand Radar Center",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": ["military"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 38.12334885402501, "lng": 46.24445915222168 },
+    "date": "2025-06-13T16:08:00.000Z",
+    "details": null,
+    "displayName": "Tabriz Fighter Base",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": ["military"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 35.7212572, "lng": 51.38793999999999 },
+    "date": "2025-06-16T16:25:53.636Z",
+    "details": "Critical energy research site, blackout in area",
+    "displayName": "مرکز تحقیقاتی هسته‌ای تهران – چمران",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": [
+      {
+        "category": "commander",
+        "image": null,
+        "name": "آیت‌الله بروجردی",
+        "role": "General"
+      },
+      {
+        "category": "military",
+        "image": null,
+        "name": "Majid Majidi",
+        "role": null
+      },
+      {
+        "category": "civilian",
+        "image": null,
+        "name": "Abed Hosseini",
+        "role": "Engineer"
+      }
+    ],
+    "siteType": "oil",
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 33.7254888, "lng": 51.7258089 },
+    "date": "2025-06-13T16:11:00.000Z",
+    "details": null,
+    "displayName": "Natanz Nuclear Facility",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": ["nuclear"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 38.0046301, "lng": 46.1203352 },
+    "date": "2025-06-13T16:14:00.000Z",
+    "details": null,
+    "displayName": "Tabriz Radar Center ",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": ["military"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 1, "injured": 0 },
+    "coordinates": { "lat": 35.7186842, "lng": 51.3738217 },
+    "date": "2025-06-13T15:57:00.000Z",
+    "details": null,
+    "displayName": " Private residence of Mohammad Bagheri",
+    "militaryCasualties": { "dead": 1, "injured": 0 },
+    "people": [
+      {
+        "category": "military",
+        "image": "https://cdn.sanity.io/images/rdk9umy0/production/38ac63e1ec919a47151ef59aa2de851ee7894970-246x305.png",
+        "name": "Mohammad Bagheri",
+        "role": "Chief of staff of the Iranian armed forces"
+      },
+      {
+        "category": "civilian",
+        "image": "https://cdn.sanity.io/images/rdk9umy0/production/a5f9b421d61a5deb936e49c3ff0be88e507bea8d-383x505.png",
+        "name": "Fereshteh Bagheri",
+        "role": "Family members of Mohammad Bagheri"
+      }
+    ],
+    "siteType": ["personofinterest"],
+    "uncategorisedCasualties": { "dead": 1 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 35.7862876, "lng": 51.40910529999999 },
+    "date": "2025-06-16T16:28:00.000Z",
+    "details": "این حمله به ساختمان شیشه‌ای صداوسیما، محل استقرار معاونت سیاسی سازمان صداوسیما، انجام شد. ارتش اسرائیل ادعا کرد که این مجموعه به عنوان پوششی برای عملیات نظامی مخفی جمهوری اسلامی استفاده می‌شده است.",
+    "displayName": "ساختمان صداوسیمای جمهوری اسلامی ",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": ["government", "military"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 34.0471666, "lng": 48.6364746 },
+    "date": "2025-06-14T16:24:00.000Z",
+    "details": null,
+    "displayName": "کارخانه فردا موتور",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": ["industry"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 38.1233241, "lng": 46.2445031 },
+    "date": "2025-06-13T20:14:00.000Z",
+    "details": null,
+    "displayName": "فرودگاه تبریز",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": ["government", "transport"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 35.7212572, "lng": 51.38793999999999 },
+    "date": "2025-06-16T16:25:53.636Z",
+    "details": "Critical energy research site, blackout in area",
+    "displayName": "مرکز تحقیقاتی هسته‌ای تهران – چمران",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": [
+      {
+        "category": "military",
+        "image": "https://cdn.sanity.io/images/rdk9umy0/production/dc2fb906862d8537a441081a1c4f45192891ed10-458x536.jpg",
+        "name": "آیت‌الله بروجردی",
+        "role": "رئیس کمسیون"
+      },
+      {
+        "category": "military",
+        "image": null,
+        "name": "Majid Majidi",
+        "role": null
+      },
+      {
+        "category": "civilian",
+        "image": null,
+        "name": "Abed Hosseini",
+        "role": "Engineer"
+      }
+    ],
+    "siteType": ["energy", "nuclear", "military", "civilian"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 35.69057919999999, "lng": 51.3959221 },
+    "date": "2025-06-16T18:03:00.000Z",
+    "details": null,
+    "displayName": "نطنز",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": null,
+    "siteType": "oil",
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 35.7976094, "lng": 51.50803939999999 },
+    "date": "2025-06-13T16:22:00.000Z",
+    "details": "فریدون عباسی از دست‌اندرکاران برنامه هسته‌ای جمهوری اسلامی، مدتی در دوران ریاست جمهوری محمود احمدی‌نژاد ریاست سازمان انرژی اتمی را در دست داشت. عباسی در سال‌های ۱۳۶۶ تا ۱۳۹۸، در سپاه پاسداران خدمت می‌کرد و با درجه سرتیپی از این نیرو بازنشسته شد. ریاست سازمان انرژی اتمی و نماینده مجلس شورای اسلامی، از ",
+    "displayName": "منزل شخصی فریدون عباسی دوانی",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": [
+      {
+        "category": "nuclear",
+        "image": "https://cdn.sanity.io/images/rdk9umy0/production/13cf4e53243e2b536506a6f188c5dc6a49dd7709-223x278.png",
+        "name": "فریدون عباسی",
+        "role": "دانشمند هسته‌ای"
+      }
+    ],
+    "siteType": ["personofinterest"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  },
+  {
+    "civilianCasualties": { "dead": 0, "injured": 0 },
+    "coordinates": { "lat": 35.7976094, "lng": 51.50803939999999 },
+    "date": "2025-06-13T16:22:00.000Z",
+    "details": "He previously served as the head of the Atomic Energy Organization of Iran. He also served a term as a representative in the Iranian Parliament and was involved in Iran's nuclear program.",
+    "displayName": "Private residence of Fereydoun Abbasi",
+    "militaryCasualties": { "dead": 0, "injured": 0 },
+    "people": [
+      {
+        "category": "nuclear",
+        "image": "https://cdn.sanity.io/images/rdk9umy0/production/13cf4e53243e2b536506a6f188c5dc6a49dd7709-223x278.png",
+        "name": "Fereydoun Abbasi",
+        "role": "Nuclear Scientist"
+      }
+    ],
+    "siteType": ["personofinterest"],
+    "uncategorisedCasualties": { "dead": 0, "injured": 0 }
+  }
+]

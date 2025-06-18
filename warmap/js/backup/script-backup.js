@@ -12,41 +12,9 @@ function initializeMap() {
       maxZoom: 18,
     }
   ).addTo(map);
-
-  // Add a delay before performing zoom-in animation using flyTo
-//   setTimeout(() => {
-//     map.flyTo([32.4279, 53.688], 6, {
-//       duration: 2,
-//     });
-//   }, 500);
-
   return map;
 }
-// Fetch JSON data before initializing the map and other components
-fetch("locations.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const locations = processLocationData(data);
-
-    const map = initializeMap();
-    const clusterGroup = initializeClusterGroup();
-    addMarkersToClusterGroup(locations, clusterGroup);
-
-    const uniqueTypes = [
-      "oil",
-      "military",
-      "civilian",
-      "nuclear",
-      "utility",
-      "personofinterest",
-      "other",
-    ];
-    const typeFilterContainer = document.getElementById(
-      "siteTypeFilterContainer"
-    );
-    const timeFilterDropdown = document.getElementById("timeFilter");
-
-    createFilters(uniqueTypes, typeFilterContainer, timeFilterDropdown);
+const map = initializeMap();
 
 // Function to process location data
 function processLocationData(data) {
@@ -68,130 +36,158 @@ function processLocationData(data) {
   }));
 }
 
-// Function to create filters
-function createFilters(uniqueTypes, typeFilterContainer, timeFilterDropdown) {
-  timeFilterDropdown.classList.add(
-    "rounded",
-    "border-white-100",
-    "focus:ring-blue-400",
-    "focus:border-gray-400",
-    "p-2",
-    "shadow-sm"
-  );
+// Fetch JSON data before initializing the map and other components
+fetch("data/locations.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const locations = processLocationData(data);
 
-  uniqueTypes.forEach((type) => {
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.value = type;
-    checkbox.id = `type-${type}`;
+    const clusterGroup = initializeClusterGroup();
+    addMarkersToClusterGroup(locations, clusterGroup);
 
-    const label = document.createElement("label");
-    label.htmlFor = `type-${type}`;
-    label.textContent = type;
+    const uniqueTypes = [
+      "oil",
+      "military",
+      "civilian",
+      "nuclear",
+      "utility",
+      "personofinterest",
+      "other",
+    ];
+    const typeFilterContainer = document.getElementById(
+      "siteTypeFilterContainer"
+    );
+    const timeFilterDropdown = document.getElementById("timeFilter");
 
-    const wrapper = document.createElement("div");
-    wrapper.style.display = "flex";
-    wrapper.style.alignItems = "center";
-    wrapper.appendChild(checkbox);
-    wrapper.appendChild(label);
+    createFilters(uniqueTypes, typeFilterContainer, timeFilterDropdown);
 
-    typeFilterContainer.appendChild(wrapper);
-  });
-}
-
-// Calculate total casualties for the location
-function calculateCasualties(location) {
-  const totalInjured =
-    (location.militaryCasualties
-      ? parseInt(location.militaryCasualties.split(",")[0])
-      : 0) +
-    (location.civilianCasualties
-      ? parseInt(location.civilianCasualties.split(",")[0])
-      : 0) +
-    (location.uncategorisedCasualties
-      ? parseInt(location.uncategorisedCasualties.split(",")[0])
-      : 0);
-
-  const totalKilled =
-    (location.militaryCasualties
-      ? parseInt(location.militaryCasualties.split(",")[1])
-      : 0) +
-    (location.civilianCasualties
-      ? parseInt(location.civilianCasualties.split(",")[1])
-      : 0) +
-    (location.uncategorisedCasualties
-      ? parseInt(location.uncategorisedCasualties.split(",")[1])
-      : 0);
-
-  return {
-    totalInjured,
-    totalKilled,
-    totalCasualties: totalInjured + totalKilled,
-  };
-}
-
-// Function to initialize marker cluster group
-function initializeClusterGroup() {
-  return L.markerClusterGroup({
-    showCoverageOnHover: false,
-    iconCreateFunction: function (cluster) {
-      const markers = cluster.getAllChildMarkers();
-      const casualtySum = markers.reduce(
-        (sum, marker) => sum + (marker.options.casualties || 0),
-        0
+    // Function to create filters
+    function createFilters(
+      uniqueTypes,
+      typeFilterContainer,
+      timeFilterDropdown
+    ) {
+      timeFilterDropdown.classList.add(
+        "rounded",
+        "border-white-100",
+        "focus:ring-blue-400",
+        "focus:border-gray-400",
+        "p-2",
+        "shadow-sm"
       );
-      return L.divIcon({
-        html: `<div style='color: red; font-weight: bold; font-family: volant; font-size: 24px;'>${casualtySum
-          .toString()
-          .replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d])}</div>`,
-        className: "casualties-label",
-        iconSize: L.point(40, 40),
-      });
-    },
-  });
-}
 
-// Function to add markers to cluster group
-function addMarkersToClusterGroup(locations, clusterGroup) {
-  locations.forEach((location) => {
-    if (location.Coordinates) {
-      const { totalInjured, totalKilled, totalCasualties } =
-        calculateCasualties(location);
-      const persianDigits = totalCasualties
-        .toString()
-        .replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
-      const label = L.divIcon({
-        className: "casualties-label",
-        html: `<div style='color: red; font-weight: bold; font-family: volant; font-size: 24px;'>${persianDigits}</div>`,
-      });
-      const icon = L.icon({
-        iconUrl: "svg/un.svg",
-        iconSize: [30, 30],
-        iconAnchor: [15, 15],
-        popupAnchor: [0, -15],
-      });
-      const marker = L.marker(location.Coordinates, {
-        icon: label,
-        casualties: totalCasualties,
-      });
+      uniqueTypes.forEach((type) => {
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = type;
+        checkbox.id = `type-${type}`;
 
-      //   marker.bindPopup(
-      //     `<table>
-      //       <tr><td>Site Type:</td><td>${location.siteType}</td></tr>
-      //       <tr><td>Total Injured:</td><td>${totalInjured}</td></tr>
-      //       <tr><td>Total Killed:</td><td>${totalKilled}</td></tr>
-      //       <tr><td>Total Casualties:</td><td>${totalCasualties}</td></tr>
-      //     </table>`
-      //   );
+        const label = document.createElement("label");
+        label.htmlFor = `type-${type}`;
+        label.textContent = type;
 
-      clusterGroup.addLayer(marker);
+        const wrapper = document.createElement("div");
+        wrapper.style.display = "flex";
+        wrapper.style.alignItems = "center";
+        wrapper.appendChild(checkbox);
+        wrapper.appendChild(label);
+
+        typeFilterContainer.appendChild(wrapper);
+      });
     }
-  });
-}
 
+    // Calculate total casualties for the location
+    function calculateCasualties(location) {
+      const totalInjured =
+        (location.militaryCasualties
+          ? parseInt(location.militaryCasualties.split(",")[0])
+          : 0) +
+        (location.civilianCasualties
+          ? parseInt(location.civilianCasualties.split(",")[0])
+          : 0) +
+        (location.uncategorisedCasualties
+          ? parseInt(location.uncategorisedCasualties.split(",")[0])
+          : 0);
+
+      const totalKilled =
+        (location.militaryCasualties
+          ? parseInt(location.militaryCasualties.split(",")[1])
+          : 0) +
+        (location.civilianCasualties
+          ? parseInt(location.civilianCasualties.split(",")[1])
+          : 0) +
+        (location.uncategorisedCasualties
+          ? parseInt(location.uncategorisedCasualties.split(",")[1])
+          : 0);
+
+      return {
+        totalInjured,
+        totalKilled,
+        totalCasualties: totalInjured + totalKilled,
+      };
+    }
+
+    // Function to initialize marker cluster group
+    function initializeClusterGroup() {
+      return L.markerClusterGroup({
+        showCoverageOnHover: false,
+        iconCreateFunction: function (cluster) {
+          const markers = cluster.getAllChildMarkers();
+          const casualtySum = markers.reduce(
+            (sum, marker) => sum + (marker.options.casualties || 0),
+            0
+          );
+          return L.divIcon({
+            html: `<div style='color: red; font-weight: bold; font-family: volant; font-size: 24px;'>${casualtySum
+              .toString()
+              .replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d])}</div>`,
+            className: "casualties-label",
+            iconSize: L.point(40, 40),
+          });
+        },
+      });
+    }
+
+    // Function to add markers to cluster group
+    function addMarkersToClusterGroup(locations, clusterGroup) {
+      locations.forEach((location) => {
+        if (location.Coordinates) {
+          const { totalInjured, totalKilled, totalCasualties } =
+            calculateCasualties(location);
+          const persianDigits = totalCasualties
+            .toString()
+            .replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+          const label = L.divIcon({
+            className: "casualties-label",
+            html: `<div style='color: red; font-weight: bold; font-family: volant; font-size: 24px;'>${persianDigits}</div>`,
+          });
+          const icon = L.icon({
+            iconUrl: "svg/un.svg",
+            iconSize: [30, 30],
+            iconAnchor: [15, 15],
+            popupAnchor: [0, -15],
+          });
+          const marker = L.marker(location.Coordinates, {
+            icon: label,
+            casualties: totalCasualties,
+          });
+
+          //   marker.bindPopup(
+          //     `<table>
+          //       <tr><td>Site Type:</td><td>${location.siteType}</td></tr>
+          //       <tr><td>Total Injured:</td><td>${totalInjured}</td></tr>
+          //       <tr><td>Total Killed:</td><td>${totalKilled}</td></tr>
+          //       <tr><td>Total Casualties:</td><td>${totalCasualties}</td></tr>
+          //     </table>`
+          //   );
+
+          clusterGroup.addLayer(marker);
+        }
+      });
+    }
 
     // Function to update the map with filtered locations
-    const updateMap = (filteredLocations) => {
+    const updateMapFilteredLocations = (filteredLocations) => {
       // Remove existing markers and circles from the map
       map.eachLayer((layer) => {
         if (layer instanceof L.Marker || layer instanceof L.Circle) {
@@ -327,6 +323,82 @@ function addMarkersToClusterGroup(locations, clusterGroup) {
       });
     };
 
+    // Update the map with filtered locations based on date, casualties, and type filters
+    const updateMap = (filteredLocations) => {
+      // Remove existing markers and circles from the map
+      map.eachLayer((layer) => {
+        if (layer instanceof L.Marker || layer instanceof L.Circle) {
+          map.removeLayer(layer);
+        }
+      });
+
+      // Check if casualties checkbox is present and checked
+      const casualtiesCheckbox = document.getElementById("filter-casualties");
+      const showCasualtiesLabels =
+        casualtiesCheckbox && casualtiesCheckbox.checked;
+
+      // Filter locations based on casualties if checkbox is checked
+      if (showCasualtiesLabels) {
+        filteredLocations = filteredLocations.filter((location) => {
+          const { totalCasualties } = calculateCasualties(location);
+          return totalCasualties > 0;
+        });
+      }
+
+      // Filter locations based on date
+      const selectedTime = document.getElementById("timeFilter").value;
+      if (selectedTime) {
+        const daysAgo = parseInt(selectedTime, 10);
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - daysAgo);
+        filteredLocations = filteredLocations.filter((location) => {
+          let dateObj = null;
+          if (location.date) {
+            dateObj = new Date(location.date);
+          }
+          return dateObj && dateObj >= cutoffDate;
+        });
+      }
+
+      // Add markers for each filtered location
+      filteredLocations.forEach((location) => {
+        const { totalInjured, totalKilled, totalCasualties } =
+          calculateCasualties(location);
+        const icon = L.icon({
+          iconUrl: `svg/${location.siteType}.svg`,
+          iconSize: [30, 30],
+          iconAnchor: [15, 15],
+          popupAnchor: [0, -15],
+        });
+
+        if (location.Coordinates) {
+          const marker = L.marker(location.Coordinates, { icon }).addTo(map);
+
+          // Add pop-up content
+          marker.bindPopup(
+            `<table>
+              <tr><td>Site Type:</td><td>${location.siteType}</td></tr>
+              <tr><td>Total Injured:</td><td>${totalInjured}</td></tr>
+              <tr><td>Total Killed:</td><td>${totalKilled}</td></tr>
+              <tr><td>Total Casualties:</td><td>${totalCasualties}</td></tr>
+            </table>`
+          );
+        }
+      });
+
+      // Update marker cluster group
+      clusterGroup.clearLayers();
+      filteredLocations.forEach((location) => {
+        if (location.Coordinates) {
+          const { totalCasualties } = calculateCasualties(location);
+          const marker = L.marker(location.Coordinates, {
+            casualties: totalCasualties,
+          });
+          clusterGroup.addLayer(marker);
+        }
+      });
+    };
+
     // Function to filter locations based on selected site types and time
     const filterLocations = () => {
       const selectedTypes = Array.from(
@@ -374,7 +446,7 @@ function addMarkersToClusterGroup(locations, clusterGroup) {
       );
 
       // Update the map with filtered locations
-      updateMap(filteredLocations);
+      updateMapFilteredLocations(filteredLocations);
     };
 
     // Calculate the sum of all killed and injured
@@ -766,5 +838,32 @@ function addMarkersToClusterGroup(locations, clusterGroup) {
       map.addLayer(clusterGroup);
     } else {
       map.removeLayer(clusterGroup);
+    }
+
+    // Add event listener to casualties checkbox to grey out site type checkboxes
+    if (casualtiesCheckbox) {
+      casualtiesCheckbox.addEventListener("change", () => {
+        const typeCheckboxes = document.querySelectorAll(
+          "#siteTypeFilterContainer input[type=checkbox]"
+        );
+        typeCheckboxes.forEach((checkbox) => {
+          checkbox.disabled = casualtiesCheckbox.checked;
+          checkbox.style.opacity = casualtiesCheckbox.checked ? 0.5 : 1;
+        });
+      });
+    }
+
+    // Add event listener to casualties checkbox to uncheck and grey out site type checkboxes
+    if (casualtiesCheckbox) {
+      casualtiesCheckbox.addEventListener("change", () => {
+        const typeCheckboxes = document.querySelectorAll(
+          "#siteTypeFilterContainer input[type=checkbox]"
+        );
+        typeCheckboxes.forEach((checkbox) => {
+          checkbox.checked = false; // Uncheck all site type checkboxes
+          checkbox.disabled = casualtiesCheckbox.checked; // Grey out if casualties checkbox is checked
+          checkbox.style.opacity = casualtiesCheckbox.checked ? 0.5 : 1;
+        });
+      });
     }
   });
