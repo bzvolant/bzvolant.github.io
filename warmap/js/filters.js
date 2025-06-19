@@ -77,6 +77,9 @@ export function applyFilters(options = {}) {
 
   // Clear existing markers
   clearMarkers();
+  if (window.clearClusterGroup) {
+    window.clearClusterGroup();
+  }
 
   // Add filtered markers
   filteredData.forEach((entry) => {
@@ -92,7 +95,13 @@ export function applyFilters(options = {}) {
       });
       const popupContent = createPopup(entry);
       console.log('Generated popup content:', popupContent);
-      const marker = addMarker(latLong, entry.siteType || entry.type);
+      // Use addClusteredMarker if available, otherwise fallback to addMarker
+      let marker;
+      if (typeof window.addClusteredMarker === 'function') {
+        marker = window.addClusteredMarker(latLong, entry.siteType || entry.type);
+      } else {
+        marker = addMarker(latLong, entry.siteType || entry.type);
+      }
       if (marker) {
         // Create and bind popup
         const popup = L.popup().setContent(popupContent);

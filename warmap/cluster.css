@@ -1,0 +1,66 @@
+/* cluster.css - Custom styles for Leaflet marker clusters */
+
+/* Cluster icon background and border */
+.leaflet-marker-icon.marker-cluster {
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 0; /* Make corners slightly rounded, but not a circle */
+  color: #fff;
+  font-family: 'Volant-Semibold', Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background 0.2s;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Cluster icon on hover */
+.leaflet-marker-icon.marker-cluster:hover {
+  background: rgba(255, 40, 40, 1);
+  border-color: #ffb3b3;
+}
+
+/* Remove inner circles and backgrounds for square cluster appearance */
+.leaflet-marker-icon.marker-cluster,
+.leaflet-marker-icon.marker-cluster div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  height: 25px !important;
+  width: 25px !important;
+  line-height: 25px !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.leaflet-marker-icon.marker-cluster span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 14px !important;
+}
+
+.leaflet-marker-icon.marker-cluster div {
+  background: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Optional: adjust cluster shadow */
+.leaflet-marker-shadow {
+  filter: blur(2px) opacity(0.5);
+}

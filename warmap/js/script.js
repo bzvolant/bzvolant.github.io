@@ -1,12 +1,23 @@
 import { createSiteTypeFilter, createTimeFilter } from "./filterUI.js";
 import { calculateCasualties } from "./casualties.js";
-import { processLocationData, calculateCoordinates, getUniqueSiteTypes, splitIntoSingleTypes } from "./data.js";
+import {
+  processLocationData,
+  calculateCoordinates,
+  getUniqueSiteTypes,
+  splitIntoSingleTypes,
+} from "./data.js";
 import { filterByTime, filterByType, applyFilters } from "./filters.js";
 import { toPersianDigits, updateUrlParams, hideUI } from "./utils.js";
-import { initializeMarkerSystem, getSiteTypeIcon, addMarker, clearMarkers } from "./markers.js";
+import {
+  initializeMarkerSystem,
+  getSiteTypeIcon,
+  addMarker,
+  clearMarkers,
+} from "./markers.js";
 import { createPopup } from "./popup.js";
 import { handleURLFilters, setURLFromUI, setUIFromURL } from "./queries.js";
 import { initializeMap, iranBorder } from "./map.js";
+import { ClusteredMarker, setClusterEnabled, getClusterEnabled, clearClusterGroup } from "./cluster.js";
 
 const map = initializeMap();
 initializeMarkerSystem(map);
@@ -64,3 +75,17 @@ fetch(
   .catch((error) => {
     console.error("Error fetching data:", error);
   });
+
+window.addClusteredMarker = function(latLong, type) {
+  return ClusteredMarker({
+    map,
+    latLong,
+    type,
+    getSiteTypeIcon,
+    enable: getClusterEnabled()
+  });
+};
+setClusterEnabled(false);
+applyFilters();
+window.clearClusterGroup = clearClusterGroup;
+

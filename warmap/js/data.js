@@ -23,6 +23,15 @@ export function calculateCoordinates(entry) {
   if (entry.coordinates && entry.coordinates.lat && entry.coordinates.lng) {
     return [entry.coordinates.lat, entry.coordinates.lng];
   }
+  if (Array.isArray(entry.Coordinates) && entry.Coordinates.length === 2) {
+    return entry.Coordinates;
+  }
+  if (typeof entry.Coordinates === 'string') {
+    const parts = entry.Coordinates.split(',').map(Number);
+    if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+      return parts;
+    }
+  }
   return null;
 }
 
