@@ -87,3 +87,40 @@ export function splitIntoSingleTypes(jsonData) {
 
   return result;
 }
+
+// Function to extract displayName from an entry
+export function getDisplayName(entry) {
+    if (entry && typeof entry === 'object') {
+        // Check for displayName directly
+        if (entry.displayName) {
+            return entry.displayName;
+        }
+        
+        // Fallback to name field if it exists
+        if (entry.name) {
+            return entry.name;
+        }
+        
+        // Fallback to a combination of city and province if available
+        if (entry.City || entry.Province) {
+            const parts = [];
+            if (entry.City) parts.push(entry.City);
+            if (entry.Province) parts.push(entry.Province);
+            return parts.join(', ');
+        }
+        
+        // Fallback to site type as a last resort
+        if (entry.siteType) {
+            if (Array.isArray(entry.siteType)) {
+                return entry.siteType[0];
+            }
+            return entry.siteType;
+        }
+        
+        if (entry.type) {
+            return entry.type;
+        }
+    }
+    return 'Unknown';
+}
+

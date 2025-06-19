@@ -3,7 +3,7 @@
 .leaflet-popup-content {
   background: #fff;
   max-width: 400px;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-family: '', 'Segoe UI', Arial, sans-serif;
   font-size: 1.05em;
   line-height: 1.7;
 }

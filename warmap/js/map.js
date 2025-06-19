@@ -1,3 +1,5 @@
+import { fetchData } from "./fetch.js";
+
 export function initializeMap() {
   const params = new URLSearchParams(window.location.search);
   const zoom = parseInt(params.get("zoom")) || 6;
@@ -22,6 +24,11 @@ export function initializeMap() {
   return map;
 }
 
+// Expose the map instance for other modules
+export function getMapInstance() {
+  return window.leafletMap;
+}
+
 export async function iranBorder(map) {
     const response = await fetch('data/iran-border.geojson');
     const geojson = await response.json();
@@ -34,3 +41,4 @@ export async function iranBorder(map) {
     }).addTo(map);
     return borderLayer;
 }
+

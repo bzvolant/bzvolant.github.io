@@ -1,5 +1,7 @@
 import { calculateCasualties } from "./casualties.js";
-import { toPersianDigits } from "./utils.js";
+import { toPersianDigits, toFarsiDate, translateToFarsi } from "./utils.js";
+
+
 
 // Generate a simple popup with just the most important info
 export function createPopup(entry) {
@@ -17,19 +19,23 @@ export function createPopup(entry) {
     let siteTypeDisplay = "Unknown";
     if (entry.siteType) {
       if (Array.isArray(entry.siteType)) {
-        siteTypeDisplay = entry.siteType.join(", ");
+        console.log("Translating siteType array:", entry.siteType); // Debug log
+        siteTypeDisplay = entry.siteType.map(translateToFarsi).join("، "); // Translate each type
       } else {
-        siteTypeDisplay = entry.siteType;
+        console.log("Translating single siteType:", entry.siteType); // Debug log
+        siteTypeDisplay = translateToFarsi(entry.siteType); // Translate single type
       }
     } else if (entry.type) {
-      siteTypeDisplay = entry.type;
+      console.log("Translating fallback type:", entry.type); // Debug log
+      siteTypeDisplay = translateToFarsi(entry.type); // Translate fallback type
     }
-    content += `<span>Type: ${siteTypeDisplay}</span><br>`;
+    content += `<span> نوع: ${siteTypeDisplay}</span><br>`;
 
     // Date
     if (entry.date) {
       const dateObj = new Date(entry.date);
-      content += `<span>Date: ${dateObj.toLocaleDateString()}</span><br>`;
+      const farsiDate = toFarsiDate(dateObj);
+      content += `<span>تاریخ: ${farsiDate}</span><br>`;
     }
 
     // Location
@@ -48,8 +54,42 @@ export function createPopup(entry) {
     // Casualties (summary only)
     const casualties = calculateCasualties(entry);
     if (casualties.total > 0) {
-      content += `<span>Casualties: ${toPersianDigits(casualties.total)}</span><br>`;
+      content += `<span>تلفات: ${toPersianDigits(casualties.total)} نفر</span><br>`;
     }
+
+    // Add link
+    if (entry.link) {
+      content += `<a href='${entry.link}' target='_blank'>لینک </a><br>`;
+    }
+
+    // Add main image
+    if (entry.mainImage) {
+      content += `<img src='${entry.mainImage}' alt='Main Image' style='max-width: 100%; height: auto;'><br>`;
+    }
+
+    // Add people details
+    if (entry.people && Array.isArray(entry.people)) {
+      content += `<div class='people-section'>`;
+      entry.people.forEach(person => {
+        content += `<div class='person'>`;
+        if (person.image) {
+          content += `<img src='${person.image}' alt='${person.name}' style='max-width: 50px; height: auto;'>`;
+        }
+        if (person.name || person.role) {
+          content += `<div class='person-detail'>`;
+          if (person.name) {
+            content += `<span>${person.name}</span>`;
+          }
+          if (person.role) {
+            content += `<span>(${person.role})</span>`;
+          }
+          content += `</div>`;
+        }
+        content += `</div>`;
+      });
+      content += `</div>`;
+    }
+
 
     // Only one main div for styling
     return `<div class='leaflet-popup-content'>${content}</div>`;

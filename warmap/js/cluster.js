@@ -1,13 +1,25 @@
 // cluster.js
 // Combined function to handle clustering logic, toggling, and marker addition
 import { toPersianDigits } from './utils.js';
-import { clearMarkers } from './markers.js';
+import { clearMarkers, setShowLabels } from './markers.js';
+import { getDisplayName } from './data.js';
+import { addMarkerLabel, addMarkerWithBackground } from './marker-label.js';
+
 let allClusterMarkers = [];
 
 let clusterGroup = null;
 let clusterEnabled = false;
+let showLabels = false; // Default to hide labels
 
-export function ClusteredMarker({ map, latLong, type, getSiteTypeIcon, enable, maxClusterRadius = 30 }) {
+// Set cluster enabled/disabled
+export function setClusterLabels(show) {
+    console.log("Setting cluster labels to:", show); // Debug log
+    showLabels = show;
+    // Also update regular markers
+    setShowLabels(show);
+}
+
+export function ClusteredMarker({ map, latLong, type, getSiteTypeIcon, enable, maxClusterRadius = 30, entry }) {
     // Set cluster enabled/disabled
     if (typeof enable === 'boolean') {
         clusterEnabled = enable;
@@ -36,16 +48,38 @@ export function ClusteredMarker({ map, latLong, type, getSiteTypeIcon, enable, m
             map.removeLayer(clusterGroup);
         }
     }
+    
+    // Get display name if entry is provided
+    const displayName = entry ? getDisplayName(entry) : 'Unknown';
+    
     // Add marker
     const icon = getSiteTypeIcon(type);
     let marker;
     if (clusterEnabled && clusterGroup) {
-        marker = L.marker(latLong, { icon: icon });
+        marker = L.marker(latLong, { 
+            icon: icon,
+            title: displayName // Keep for reference
+        });
+        
+        // Add permanent label if labels are enabled
+        if (showLabels && displayName !== 'Unknown') {
+            addMarkerWithBackground(marker, displayName);
+        }
+        
         clusterGroup.addLayer(marker);
         allClusterMarkers.push(marker);
         return marker;
     } else if (!clusterEnabled && map) {
-        marker = L.marker(latLong, { icon: icon }).addTo(map);
+        marker = L.marker(latLong, { 
+            icon: icon,
+            title: displayName // Keep for reference
+        }).addTo(map);
+        
+        // Add permanent label if labels are enabled
+        if (showLabels && displayName !== 'Unknown') {
+            addMarkerWithBackground(marker, displayName);
+        }
+        
         allClusterMarkers.push(marker);
         return marker;
     }

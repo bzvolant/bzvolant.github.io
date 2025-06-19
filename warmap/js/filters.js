@@ -2,6 +2,8 @@ import { calculateCoordinates } from './data.js';
 import { addMarker, clearMarkers } from './markers.js';
 import { createPopup } from './popup.js';
 import { setURLFromUI } from './queries.js';
+import { getMapInstance } from './map.js';
+import { toggleMarkerLabels } from './marker-label.js';
 
 // Filter entries by time
 export function filterByTime(entries, days) {
@@ -98,9 +100,9 @@ export function applyFilters(options = {}) {
       // Use addClusteredMarker if available, otherwise fallback to addMarker
       let marker;
       if (typeof window.addClusteredMarker === 'function') {
-        marker = window.addClusteredMarker(latLong, entry.siteType || entry.type);
+        marker = window.addClusteredMarker(latLong, entry.siteType || entry.type, entry);
       } else {
-        marker = addMarker(latLong, entry.siteType || entry.type);
+        marker = addMarker(latLong, entry.siteType || entry.type, entry);
       }
       if (marker) {
         // Create and bind popup
@@ -110,9 +112,30 @@ export function applyFilters(options = {}) {
     }
   });
 
+  // Make sure labels are shown or hidden according to the current settings
+  const map = getMapInstance();
+  if (map) {
+    // This ensures labels are correctly shown/hidden based on current settings
+    const labelToggle = document.getElementById('labelToggle');
+    if (labelToggle) {
+      toggleMarkerLabels(map, labelToggle.checked);
+    }
+  }
+
   // Log and return count
   const count = filteredData.length;
   console.log(`Displayed ${count} markers after filtering`);
+  
+  // Force label refresh
+  const labelToggle = document.getElementById('labelToggle');
+  if (labelToggle && labelToggle.checked) {
+    console.log("Force refreshing labels"); // Debug log
+    const map = getMapInstance();
+    if (map) {
+      toggleMarkerLabels(map, true);
+    }
+  }
+  
   return count;
 }
 

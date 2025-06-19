@@ -46,3 +46,40 @@ export function hideUI() {
     if (infoSection) infoSection.style.display = "";
   }
 }
+
+export function toFarsiDate(date) {
+  const farsiDate = new Intl.DateTimeFormat('fa-IR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+
+  return toPersianDigits(farsiDate); // Use toPersianDigits to convert digits
+}
+
+
+// Function to convert types to Farsi
+export function translateToFarsi(type) {
+  const wordTranslations = {
+    military: "نظامی",
+    utility: "خدماتی",
+    oil: "نفتی",
+    nuclear: "هسته‌ای",
+    target: "هدف",
+    injured: "مجروح",
+    killed: "کشته",
+    other: "سایر",
+    personofinterest: "شخص مورد نظر",
+    civilian: "غیرنظامی",
+    energy: "انرژی",
+    industry: "صنعتی",
+    site: "محل",
+    siteType: "نوع",
+    unknown: "ناشناخته",
+    government: "دولتی",
+    casualties: "تلفات",
+    transport: "حمل و نقل",
+  };
+
+  return wordTranslations[type] || type; // Return translation or original type if not found
+}

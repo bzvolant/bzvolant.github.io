@@ -2,15 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" lang="fa">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>map</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/filterUI.css">
+    <link rel="stylesheet" href="css/toggle.css">
+    <link rel="stylesheet" href="css/marker-label.css">
+    <link rel="stylesheet" href="css/marker-alt.css">
+    <link rel="stylesheet" href="css/controls.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="popup.css">
-    <link rel="stylesheet" href="cluster.css">
 </head>
 
 <body>
@@ -19,10 +22,55 @@
         <div class="filter-group" id="siteTypeFilterContainer">
         </div>
     </div>
+    <label>
+        <input type="checkbox" id="filter-casualties">
+        Casualties
+    </label>
+    </div>
+    </div>
+
+    <div id="infoSection">
+        <h2>Location Information</h2>
+        <p>Click on a marker to view detailed information about the location.</p>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    <script type="module" src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script type="module" src="js/script.js"></script>
+<script>
+    // Add a listener for the manual button
+    document.addEventListener('DOMContentLoaded', function() {
+        const showLabelsBtn = document.getElementById('showLabelsBtn');
+        if (showLabelsBtn) {
+            showLabelsBtn.addEventListener('click', function() {
+                console.log("Manual button clicked to show labels");
+                
+                // Find the toggle by ID and set it to checked
+                const labelToggle = document.getElementById('labelToggle');
+                if (labelToggle) {
+                    console.log("Found labelToggle, setting to checked");
+                    labelToggle.checked = true;
+                    
+                    // Trigger change event
+                    const event = new Event('change');
+                    labelToggle.dispatchEvent(event);
+                } else {
+                    console.error("labelToggle not found, calling global function directly");
+                    
+                    // Call the global function directly
+                    if (window.toggleLabels) {
+                        window.toggleLabels(true);
+                    }
+                }
+            });
+        } else {
+            console.error("showLabelsBtn not found");
+        }
+    });
+</script>
 
 </html>
