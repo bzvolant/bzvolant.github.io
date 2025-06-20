@@ -234,8 +234,8 @@ export function addMarkerWithBackground(marker, displayName, options = {}) {
                 </div>
             `,
             className: 'custom-div-icon',
-            iconSize: [240, 36], // Larger size for better visibility [240, 36]
-            iconAnchor:  [225, 17], // Center anchor [221.5, 21.5]
+            iconSize: [180, 36], // Larger size for better visibility [240, 36]
+            iconAnchor:  [160, 20], // Center anchor [221.5, 21.5]
         });
         
         // Replace the marker's icon with our custom icon

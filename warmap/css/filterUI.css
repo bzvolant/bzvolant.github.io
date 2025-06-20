@@ -1,5 +1,14 @@
-/* Add styles for filter UI elements here */
+@font-face {
+  font-family: "Volant";
+  src: url("../fonts/Volant-Regular.woff2") format("woff2"),
+    url("../fonts/Volant-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
+.dropdown {
+  font-family: "Volant", sans-serif !important;
+}
 .filter-container {
   position: absolute;
   top: 10px;
@@ -8,26 +17,40 @@
   width: 300px;
 }
 
-.filter-group {
+.filter-group-time {
+  display: flex;
+  gap: 12px;
   background-color: rgba(245, 245, 245, 0.8);
   padding: 8px;
   border-radius: 5px;
   margin-bottom: 20px;
 }
-
+.filter-group-type {
+  background-color: rgba(245, 245, 245, 0.9);
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.filter-group-names {
+  align-items: center !important;
+  display: flex;
+  background-color: rgba(245, 245, 245, 0.9);
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
 .filter-label {
   color: #333;
   font-size: 14px;
   font-weight: bold;
   display: block;
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
 }
 
 .checkbox-container {
   display: flex;
   flex-direction: column;
   margin-top: 5px;
-  border: 1px solid #ddd;
   padding: 5px;
   border-radius: 3px;
 }
@@ -36,7 +59,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 8px;
-  border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
 }
 
@@ -68,11 +90,17 @@
 
 /* Toggle Switch */
 .toggle-container {
+  
   display: flex;
   align-items: center;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
-
+.filter-group-names {
+  background-color: rgba(245, 245, 245, 0.9);
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
 .switch {
   position: relative;
   display: inline-block;
@@ -95,7 +123,7 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 20px;
 }
 
@@ -107,16 +135,16 @@
   left: 2px;
   bottom: 2px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {

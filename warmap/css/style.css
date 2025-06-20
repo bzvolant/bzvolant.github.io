@@ -15,7 +15,7 @@
 }
 
 html, body {
-  font-family: "Volant", sans-serif;
+  font-family: "Volant", sans-serif !important;
   direction: rtl;
   margin: 0;
   padding: 0;
@@ -59,4 +59,8 @@ html, body {
   padding: 5px 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
   font-size: 12px;
+}
+.leaflet-container {
+  font-family: "Volant", sans-serif !important;
+  direction: rtl;
 }

@@ -1,11 +1,12 @@
 /* Alternative marker styles - with background */
 .marker-with-background {
+  align-items: center;
   position: relative;
   display: flex;
   justify-content: right;
   background-color: rgba(255, 255, 255, 1);
   padding: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 0;
   z-index: 1000 !important; /* Ensure high z-index */
   pointer-events: auto !important; /* Ensure clickability */
@@ -15,7 +16,7 @@
 .marker-background-icon {
   width: 32px;
   height: 32px;
-  margin: -4px;
+  /* margin: -4px; */
 }
 
 .marker-background-icon[src="undefined"],
@@ -24,12 +25,14 @@
 }
 
 .marker-background-text {
-  font-family: "Volant", sans-serif;
   direction: rtl;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   overflow: hidden;
   padding-right: 12px;
-  line-height: 1.5;
+  line-height: 1.2;
   color: #000; /* Ensure text is black for contrast */
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
 }

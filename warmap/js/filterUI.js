@@ -25,7 +25,7 @@ export function createSiteTypeFilter(types, onFilter) {
 
   // Apply RTL alignment to text and numbers
   const siteTypeContainer = document.createElement("div");
-  siteTypeContainer.className = "filter-group";
+  siteTypeContainer.className = "filter-group-type";
   siteTypeContainer.id = "siteTypeFilterContainer";
   filterContainer.appendChild(siteTypeContainer);
 
@@ -81,7 +81,8 @@ export function createSiteTypeFilter(types, onFilter) {
     const label = document.createElement("label");
     label.htmlFor = `type-${type}`;
     label.className = "type-label";
-    label.textContent = type; // Assuming `type` is already in Farsi
+    // Translate the type to Farsi
+    label.textContent = translateToFarsi(type);
     wrapper.appendChild(label);
 
     checkboxContainer.appendChild(wrapper);
@@ -127,7 +128,7 @@ export function createTimeFilter(onFilter) {
   }
 
   const filterGroup = document.createElement("div");
-  filterGroup.className = "filter-group";
+  filterGroup.className = "filter-group-time";
   filterContainer.appendChild(filterGroup);
 
   const label = document.createElement("label");
@@ -142,19 +143,19 @@ export function createTimeFilter(onFilter) {
   filterGroup.appendChild(select);
 
   const options = [
-    { value: "", text: "همه" },
-    { value: "1", text: "24 ساعت گذشته" },
-    { value: "2", text: "2 روز گذشته" },
-    { value: "3", text: "3 روز گذشته" },
-    { value: "7", text: "7 روز گذشته" },
-    { value: "14", text: "14 روز گذشته" },
-    { value: "30", text: "30 روز گذشته" },
+    { value: "", text: "ابتدا تا کنون" },
+    { value: "1", text: "۲۴ ساعت گذشته" },
+    { value: "2", text: "۲ روز گذشته" },
+    { value: "3", text: "۳ روز گذشته" },
+    { value: "7", text: "۷ روز گذشته" },
+    { value: "14", text: "۱۴ روز گذشته" },
+    { value: "30", text: "۳۰ روز گذشته" },
   ];
 
   options.forEach((option) => {
     const optEl = document.createElement("option");
     optEl.value = option.value;
-    optEl.textContent = toPersianDigits(option.text);
+    optEl.textContent = option.text; // Numbers are already in Persian
     select.appendChild(optEl);
   });
 
@@ -180,7 +181,7 @@ export function createLabelToggle(onToggle, initialChecked = false) {
   }
 
   const filterGroup = document.createElement("div");
-  filterGroup.className = "filter-group";
+  filterGroup.className = "filter-group-names";
   filterContainer.appendChild(filterGroup);
 
   const label = document.createElement("label");
@@ -200,6 +201,63 @@ export function createLabelToggle(onToggle, initialChecked = false) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.id = "labelToggle";
+  checkbox.checked = initialChecked; // Set initial state
+  toggleSwitch.appendChild(checkbox);
+
+  // Create the slider
+  const slider = document.createElement("span");
+  slider.className = "slider";
+  toggleSwitch.appendChild(slider);
+
+  // Add event listener
+  checkbox.addEventListener("change", function() {
+    onToggle(this.checked);
+  });
+  
+  // Trigger initial callback if checked
+  if (initialChecked) {
+    setTimeout(() => {
+      onToggle(true);
+    }, 100);
+  }
+
+  return checkbox;
+}
+
+// Create circle marker toggle UI with initial state option
+export function createCircleMarkerToggle(onToggle, initialChecked = false) {
+  // Check if container exists
+  let filterContainer = document.querySelector(".filter-container");
+  if (!filterContainer) {
+    filterContainer = document.createElement("div");
+    filterContainer.className = "filter-container";
+    document.body.insertBefore(
+      filterContainer,
+      document.getElementById("map").nextSibling
+    );
+  }
+
+  const filterGroup = document.createElement("div");
+  filterGroup.className = "filter-group-circles";
+  filterContainer.appendChild(filterGroup);
+
+  const label = document.createElement("label");
+  label.className = "filter-label";
+  label.textContent = "نمایش نقطه‌ای:"; // Show Circles in Farsi
+  filterGroup.appendChild(label);
+
+  const toggleContainer = document.createElement("div");
+  toggleContainer.className = "toggle-container";
+  filterGroup.appendChild(toggleContainer);
+
+  const toggleSwitch = document.createElement("label");
+  toggleSwitch.className = "switch";
+  toggleContainer.appendChild(toggleSwitch);
+
+  // Create the checkbox
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.id = "circleToggle";
   checkbox.checked = initialChecked; // Set initial state
   toggleSwitch.appendChild(checkbox);
 

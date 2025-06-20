@@ -1,10 +1,12 @@
 // Marker management system
 import { getDisplayName } from './data.js';
 import { addMarkerLabel, addMarkerWithBackground } from './marker-label.js';
-
+import { darkenColor } from './utils.js';
 let mapInstance = null;
 let allMarkers = [];
 let showLabels = false; // Default to hide labels
+// Variable to track if we're using circle markers
+let useCircleMarkers = false;
 
 // Expose the showLabels state to the window object for other modules to access
 window.showLabels = showLabels;
@@ -20,6 +22,18 @@ export function setShowLabels(show) {
     console.log("Setting showLabels to:", show); // Debug log
     showLabels = show;
     window.showLabels = show; // Update the window object
+}
+
+// Set whether to use circle markers
+export function setUseCircleMarkers(use) {
+    console.log("Setting useCircleMarkers to:", use);
+    useCircleMarkers = use;
+    window.useCircleMarkers = use; // Update the window object
+}
+
+// Get whether circle markers are being used
+export function getUseCircleMarkers() {
+    return useCircleMarkers;
 }
 
 // Get the appropriate icon for a site type
@@ -106,6 +120,69 @@ export function addMarker(latLong, type, entry) {
     allMarkers.push(marker);
     
     return marker;
+}
+
+// Function to add a circle marker to the map
+export function addCircleMarker(latLong, type, entry) {
+    if (!mapInstance) {
+        console.error('Map not initialized. Call initializeMarkerSystem first.');
+        return null;
+    }
+
+    // Determine the color based on the type
+    let color = '#3388ff'; // Default blue
+    
+    // Map site types to colors
+    const typeColor = {
+        'military': '#ff0000', // Red
+        'civilian': '#00ff00', // Green
+        'energy': '#ffff00', // Yellow
+        'industry': '#ff8c00', // Orange
+        'nuclear': '#800080', // Purple
+        'oil': '#000000', // Black
+        'personofinterest': '#ff00ff', // Magenta
+        'utility': '#00ffff', // Cyan
+        'injured': '#ff6347', // Tomato
+    };
+    
+    // Get the normalized type
+    const normalizedType = Array.isArray(type) ? type[0].toLowerCase() : 
+                          (typeof type === 'string' ? type.toLowerCase() : 'unknown');
+    
+    // Set color based on type
+    if (typeColor[normalizedType]) {
+        color = typeColor[normalizedType];
+    }
+    
+    // Get display name if entry is provided
+    const displayName = entry ? getDisplayName(entry) : 'Unknown';
+    
+    // Create circle marker
+
+    const circleMarker = L.circleMarker(latLong, {
+        radius: 6,
+        fillColor: color,
+        color: darkenColor(color, 0.4),
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.9,
+        title: displayName
+    }).addTo(mapInstance);
+    
+    // Add permanent label if labels are enabled
+    if (showLabels && displayName !== 'Unknown') {
+        // Create tooltip with permanent option
+        circleMarker.bindTooltip(displayName, {
+            permanent: true,
+            direction: 'top',
+            className: 'circle-marker-label'
+        });
+    }
+    
+    // Store the marker reference
+    allMarkers.push(circleMarker);
+    
+    return circleMarker;
 }
 
 // Clear all markers from the map

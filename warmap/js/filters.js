@@ -1,5 +1,5 @@
 import { calculateCoordinates } from './data.js';
-import { addMarker, clearMarkers } from './markers.js';
+import { addMarker, addCircleMarker, clearMarkers } from './markers.js';
 import { createPopup } from './popup.js';
 import { setURLFromUI } from './queries.js';
 import { getMapInstance } from './map.js';
@@ -97,12 +97,19 @@ export function applyFilters(options = {}) {
       });
       const popupContent = createPopup(entry);
       console.log('Generated popup content:', popupContent);
-      // Use addClusteredMarker if available, otherwise fallback to addMarker
+      
+      // Check if we should use circle markers
       let marker;
-      if (typeof window.addClusteredMarker === 'function') {
-        marker = window.addClusteredMarker(latLong, entry.siteType || entry.type, entry);
+      if (window.useCircleMarkers) {
+        // Use circle markers
+        marker = addCircleMarker(latLong, entry.siteType || entry.type, entry);
       } else {
-        marker = addMarker(latLong, entry.siteType || entry.type, entry);
+        // Use addClusteredMarker if available, otherwise fallback to addMarker
+        if (typeof window.addClusteredMarker === 'function') {
+          marker = window.addClusteredMarker(latLong, entry.siteType || entry.type, entry);
+        } else {
+          marker = addMarker(latLong, entry.siteType || entry.type, entry);
+        }
       }
       if (marker) {
         // Create and bind popup
