@@ -86,58 +86,6 @@ function initializeLabelToggle() {
   }, showNamesFromUrl); // Use URL parameter value for initial state
 }
 
-// Call this after a delay to ensure DOM is ready
-setTimeout(initializeLabelToggle, 500);
-
-// Check URL for showNames parameter, otherwise disable labels by default
-const showNamesFromUrl = getShowNamesFromUrl();
-setShowLabels(showNamesFromUrl);
-setClusterLabels(showNamesFromUrl);
-
-iranBorder(map);
-
-// Setup zoom-based marker labels (show labels at zoom level 13 and higher)
-setupZoomBasedLabels(map, 13);
-
-// Call the function to initialize labels on startup
-initializeLabelsOnStartup();
-
-// Function to toggle labels manually
-window.toggleLabels = function (enable) {
-  console.log("toggleLabels called with enable =", enable); // Debug log
-
-  // Set the global state
-  setShowLabels(enable);
-  setClusterLabels(enable);
-  
-  // Synchronize toggle state with URL
-  syncShowNamesWithUrl(enable);
-
-  // Get the map instance
-  const currentMap = getMapInstance();
-
-  // Apply the change to all existing markers
-  if (currentMap) {
-    // Always use applyLabelsToAllMarkers with forceRefresh=false to prevent flickering
-    applyLabelsToAllMarkers(currentMap, false);
-
-    // No need to re-apply filters - that's only necessary if markers are completely recreated
-    // This helps avoid icon replacement
-  } else {
-    console.error("Map instance not available for toggleLabels"); // Debug log
-    // Fall back to re-applying filters if map is not accessible
-    applyFilters();
-  }
-
-  // Update the toggle switch UI to match the state
-  const labelToggle = document.getElementById("labelToggle");
-  if (labelToggle && labelToggle.checked !== enable) {
-    labelToggle.checked = enable;
-  }
-
-  console.log("toggleLabels completed"); // Debug log
-};
-
 // Variable to store the circle marker toggle reference
 let circleToggle;
 
@@ -158,9 +106,6 @@ function initializeCircleToggle() {
   }, showCirclesFromUrl); // Use URL parameter value for initial state
 }
 
-// Call this after a delay to ensure DOM is ready
-setTimeout(initializeCircleToggle, 600);
-
 // Function to toggle circle markers
 window.toggleCircleMarkers = function (enable) {
   console.log("toggleCircleMarkers called with enable =", enable); // Debug log
@@ -170,6 +115,20 @@ window.toggleCircleMarkers = function (enable) {
   
   // Synchronize toggle state with URL
   syncCircleMarkersWithUrl(enable);
+
+  // If enabling circle markers, disable labels
+  if (enable) {
+    // Turn off labels
+    setShowLabels(false);
+    setClusterLabels(false);
+    syncShowNamesWithUrl(false);
+    
+    // Update the label toggle UI
+    const labelToggle = document.getElementById("labelToggle");
+    if (labelToggle) {
+      labelToggle.checked = false;
+    }
+  }
 
   // Reapply filters to update all markers
   applyFilters();
@@ -182,36 +141,6 @@ window.toggleCircleMarkers = function (enable) {
 
   console.log("toggleCircleMarkers completed"); // Debug log
 };
-
-// Function to initialize labels state on startup
-function initializeLabelsOnStartup() {
-  setTimeout(() => {
-    console.log("Initializing labels on startup");
-
-    // Check URL for showNames parameter
-    const showNamesFromUrl = getShowNamesFromUrl();
-    const hasShowNamesParam = window.location.search.includes("showNames");
-
-    // Find the toggle by ID
-    const labelToggle = document.getElementById("labelToggle");
-    if (labelToggle) {
-      // If URL has showNames parameter, use that value, otherwise default to false
-      const shouldShowLabels = hasShowNamesParam ? showNamesFromUrl : false;
-      console.log("Found labelToggle, setting to:", shouldShowLabels);
-      labelToggle.checked = shouldShowLabels;
-
-      // Trigger change event
-      const event = new Event("change");
-      labelToggle.dispatchEvent(event);
-    } else {
-      console.log(
-        "Label toggle not found yet, calling window.toggleLabels directly"
-      );
-      // Call the global toggle function directly
-      window.toggleLabels(false);
-    }
-  }, 1500); // Increased delay to ensure everything is loaded
-}
 
 fetchData()
   .then((data) => {
@@ -245,12 +174,31 @@ fetchData()
 
     // Create site type filter with a slight delay to ensure DOM is ready
     setTimeout(() => {
+      console.log("Creating site type filter...");
       const siteTypes = getUniqueSiteTypes(data);
       createSiteTypeFilter(siteTypes, () => applyFilters());
 
       // Set UI state from URL on initial load (after filters are created)
       setUIFromURL();
-    }, 1);
+      
+      // Now that the main filters are created, initialize the label and circle toggles
+      setTimeout(() => {
+        console.log("Initializing label toggle after other filters...");
+        initializeLabelToggle();
+        
+        // Initialize circle toggle after label toggle
+        setTimeout(() => {
+          console.log("Initializing circle toggle after label toggle...");
+          initializeCircleToggle();
+          
+          // Finally, apply the initial toggle states based on URL parameters
+          setTimeout(() => {
+            console.log("Applying initial toggle states from URL...");
+            applyInitialToggleStates();
+          }, 300);
+        }, 200);
+      }, 200);
+    }, 100);
   })
   .catch((error) => {
     console.error("Error fetching data:", error);
@@ -273,26 +221,9 @@ window.clearClusterGroup = clearClusterGroup;
 document.addEventListener("DOMContentLoaded", function () {
   // Apply hideUI to handle UI visibility based on URL parameter
   hideUI();
-
-  // Check for showNames parameter in URL and apply on page load
-  const showNamesFromUrl = getShowNamesFromUrl();
-  if (window.location.search.includes("showNames")) {
-    console.log("URL has showNames parameter:", showNamesFromUrl);
-    // Apply after a delay to ensure toggle is initialized
-    setTimeout(() => {
-      window.toggleLabels(showNamesFromUrl);
-    }, 800);
-  }
-
-  // Check for showCircles parameter in URL and apply on page load
-  const showCirclesFromUrl = getCircleMarkersFromUrl();
-  if (window.location.search.includes("showCircles")) {
-    console.log("URL has showCircles parameter:", showCirclesFromUrl);
-    // Apply after a delay to ensure toggle is initialized
-    setTimeout(() => {
-      window.toggleCircleMarkers(showCirclesFromUrl);
-    }, 1000);
-  }
+  
+  // Note: Toggle initialization is now handled in a controlled sequence
+  // after site type filters are created in the fetchData callback
 
   const showLabelsBtn = document.getElementById("showLabelsBtn");
   if (showLabelsBtn) {
@@ -325,6 +256,86 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("showLabelsBtn not found");
   }
 });
+
+// Check URL for showNames parameter, otherwise disable labels by default
+const showNamesFromUrl = getShowNamesFromUrl();
+setShowLabels(showNamesFromUrl);
+setClusterLabels(showNamesFromUrl);
+
+iranBorder(map);
+
+// Setup zoom-based marker labels (show labels at zoom level 13 and higher)
+setupZoomBasedLabels(map, 13);
+
+// Function to apply initial toggle states from URL parameters
+function applyInitialToggleStates() {
+  console.log("Applying initial toggle states");
+  
+  // Get states from URL
+  const showNamesFromUrl = getShowNamesFromUrl();
+  const showCirclesFromUrl = getCircleMarkersFromUrl();
+  
+  // Handle the case where both toggles might be enabled in URL
+  // Priority: if both are true, prefer showNames
+  if (showNamesFromUrl && showCirclesFromUrl) {
+    console.log("Both showNames and showCircles are true in URL, preferring showNames");
+    window.toggleLabels(true);
+    // This will automatically disable circle markers
+  } else {
+    // Apply individual states
+    if (window.location.search.includes("showNames")) {
+      console.log("Applying showNames from URL:", showNamesFromUrl);
+      window.toggleLabels(showNamesFromUrl);
+    }
+
+    if (window.location.search.includes("showCircles") && !showNamesFromUrl) {
+      console.log("Applying showCircles from URL:", showCirclesFromUrl);
+      window.toggleCircleMarkers(showCirclesFromUrl);
+    }
+  }
+}
+
+// Function to toggle labels manually
+window.toggleLabels = function (enable) {
+  console.log("toggleLabels called with enable =", enable); // Debug log
+
+  // Set the global state
+  setShowLabels(enable);
+  setClusterLabels(enable);
+  
+  // Synchronize toggle state with URL
+  syncShowNamesWithUrl(enable);
+
+  // If enabling labels, disable circle markers
+  if (enable) {
+    // Turn off circle markers
+    window.toggleCircleMarkers(false);
+  }
+
+  // Get the map instance
+  const currentMap = getMapInstance();
+
+  // Apply the change to all existing markers
+  if (currentMap) {
+    // Always use applyLabelsToAllMarkers with forceRefresh=false to prevent flickering
+    applyLabelsToAllMarkers(currentMap, false);
+
+    // No need to re-apply filters - that's only necessary if markers are completely recreated
+    // This helps avoid icon replacement
+  } else {
+    console.error("Map instance not available for toggleLabels"); // Debug log
+    // Fall back to re-applying filters if map is not accessible
+    applyFilters();
+  }
+
+  // Update the toggle switch UI to match the state
+  const labelToggle = document.getElementById("labelToggle");
+  if (labelToggle && labelToggle.checked !== enable) {
+    labelToggle.checked = enable;
+  }
+
+  console.log("toggleLabels completed"); // Debug log
+};
 
 var counterWorker = new Worker("./js/worker.js");
 counterWorker.onmessage = function (event) {
