@@ -49,6 +49,9 @@ map.on("zoomend moveend", function (e) {
   // First update the URL params
   updateUrlParams();
 
+  // Apply hideUI to ensure UI visibility state is maintained
+  hideUI();
+
   // Then make sure our labels persist if they're supposed to be visible
   if (window.showLabels) {
     // Get the current map instance
@@ -268,6 +271,9 @@ applyFilters();
 window.clearClusterGroup = clearClusterGroup;
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Apply hideUI to handle UI visibility based on URL parameter
+  hideUI();
+
   // Check for showNames parameter in URL and apply on page load
   const showNamesFromUrl = getShowNamesFromUrl();
   if (window.location.search.includes("showNames")) {

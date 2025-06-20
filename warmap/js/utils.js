@@ -18,6 +18,7 @@ export function updateUrlParams() {
   params.set("zoom", map.getZoom());
   params.set("lat", center.lat.toFixed(6));
   params.set("lng", center.lng.toFixed(6));
+  
   // Preserve hideUI parameter if it exists
   const hideUI = params.get("hideUI");
   if (hideUI === "true") {
@@ -43,17 +44,48 @@ export function updateUrlParams() {
 // Function to handle UI visibility
 export function hideUI() {
   const params = new URLSearchParams(window.location.search);
-  const UI = params.get("UI") === "false";
+  const hideUIParam = params.get("hideUI") === "true";
+  
+  console.log("hideUI function called. hideUI param:", hideUIParam);
 
+  // Get all possible UI containers
   const filterContainer = document.querySelector(".filter-container");
+  const filterContainers = document.querySelectorAll(".filter-container");
   const infoSection = document.querySelector(".info-section");
-
-  if (UI) {
+  const filterGroups = document.querySelectorAll(".filter-group, .filter-group-type, .filter-group-time, .filter-group-names, .filter-group-circles");
+  
+  if (hideUIParam) {
+    console.log("Hiding UI elements");
+    
+    // Hide main containers
     if (filterContainer) filterContainer.style.display = "none";
     if (infoSection) infoSection.style.display = "none";
+    
+    // Hide all filter containers (in case there are multiple)
+    filterContainers.forEach(container => {
+      container.style.display = "none";
+    });
+    
+    // Hide all filter groups
+    filterGroups.forEach(group => {
+      group.style.display = "none";
+    });
   } else {
+    console.log("Showing UI elements");
+    
+    // Show main containers
     if (filterContainer) filterContainer.style.display = "";
     if (infoSection) infoSection.style.display = "";
+    
+    // Show all filter containers
+    filterContainers.forEach(container => {
+      container.style.display = "";
+    });
+    
+    // Show all filter groups
+    filterGroups.forEach(group => {
+      group.style.display = "";
+    });
   }
 }
 
