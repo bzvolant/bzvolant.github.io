@@ -139,10 +139,7 @@ window.toggleCircleMarkers = function (enable) {
   }
 
   // Reapply filters to update all markers
-  // applyFilters();
-// if (window.originalData) {
-//   applyFilters();
-// }
+  applyFilters();
   // Update the toggle switch UI to match the state
   const circleToggle = document.getElementById("circleToggle");
   if (circleToggle && circleToggle.checked !== enable) {
