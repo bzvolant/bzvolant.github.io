@@ -1,0 +1,45 @@
+import { fetchData } from "./fetch.js";
+
+export function initializeMap() {
+  const params = new URLSearchParams(window.location.search);
+  const zoom = parseInt(params.get("zoom")) || 6;
+  const lat = parseFloat(params.get("lat")) || 32.4279;
+  const lng = parseFloat(params.get("lng")) || 53.688;
+
+  const map = L.map("map", {
+    attributionControl: false,
+    zoomControl: false,
+    minZoom: 4,
+  }).setView([lat, lng], zoom);
+
+  L.tileLayer(
+    "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+    {
+      maxZoom: 18,
+      subdomains: 'abcd'
+    }
+  ).addTo(map);
+
+  window.leafletMap = map;
+
+  return map;
+}
+
+// Expose the map instance for other modules
+export function getMapInstance() {
+  return window.leafletMap;
+}
+
+export async function iranBorder(map) {
+    const response = await fetch('data/iran-border.geojson');
+    const geojson = await response.json();
+    const borderLayer = L.geoJSON(geojson, {
+        style: {
+            color: "#666",
+            weight: 2,
+            fill: false,
+        }
+    }).addTo(map);
+    return borderLayer;
+}
+

@@ -1,0 +1,71 @@
+/* Simple, clean popup style for .leaflet-popup-content */
+
+@font-face {
+  font-family: "Volant";
+  src: url("../Volant.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.leaflet-popup-content {
+  margin: 24px 12px 24px 12px !important;
+  font-family: "Volant", sans-serif;
+  text-align: right;
+  direction: rtl;
+  font-size: 1.05em;
+  line-height: 1.7;
+}
+.leaflet-popup-content a ::after, a {
+
+  color: #727272 !important;
+  text-decoration: none;
+}
+
+.leaflet-popup-content strong {
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: block;
+}
+
+.leaflet-popup-content span {
+  display: block;
+}
+
+.people-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.person {
+  display: flex;
+  align-items: top;
+  text-align: right;
+  gap: 8px;
+}
+.person-details {
+  display: flex;
+}
+.person img {
+  max-width: 50px;
+  height: auto;
+}
+
+.person-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 2px !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 2px 10px rgba(182, 219, 255, 0.1) !important;
+}
+
+.leaflet-popup-close-button {
+  display: none !important;
+}
+.leaflet-popup-tip{
+  box-shadow: none !important;
+}
