@@ -13,10 +13,11 @@ export function initializeMap() {
   }).setView([lat, lng], zoom);
 
   L.tileLayer(
-    "http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+    "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
     {
       maxZoom: 18,
-      subdomains: 'abcd'
+      
+      // subdomains: 'abcd'
     }
   ).addTo(map);
 
@@ -38,6 +39,8 @@ export async function iranBorder(map) {
             color: "#666",
             weight: 2,
             fill: false,
+            // fillColor: "#fff",
+            // fillOpacity: 0.6
         }
     }).addTo(map);
     return borderLayer;

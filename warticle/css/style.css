@@ -24,7 +24,7 @@ html, body {
 }
 
 
-#map {
+.map {
   position: absolute;
   top: 0;
   left: 0;
@@ -62,4 +62,9 @@ html, body {
 .leaflet-container {
   font-family: "Volant", sans-serif !important;
   direction: rtl;
+}
+
+/* Black and white filter for only the base map tiles */
+.leaflet-tile {
+  filter: grayscale(.9) contrast(.8) brightness(1.2) !important;
 }
