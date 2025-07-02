@@ -7,7 +7,7 @@ function logFetchTime() {
 // Function to fetch data
 export async function fetchData() {
   const response = await fetch(
-    "https://cojboaykyg.execute-api.eu-west-1.amazonaws.com/default/SanityWarmapAPI"
+    "./data/warData.json"
   );
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -27,14 +27,14 @@ export async function updateFetch(hour, minute) {
       console.error("Error fetching data:", error);
     });
 
-  setInterval(() => {
-    fetchData()
-      .then((data) => {
-        console.log("Data fetched successfully:", data);
-        // Add logic to update the map with new data
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, 60 * 1000); // Repeat every 1 minute
+  // setInterval(() => {
+  //   fetchData()
+  //     .then((data) => {
+  //       console.log("Data fetched successfully:", data);
+  //       // Add logic to update the map with new data
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, 60 * 1000); // Repeat every 1 minute
 }
