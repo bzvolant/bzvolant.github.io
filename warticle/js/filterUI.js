@@ -138,14 +138,14 @@ export function createTimeFilter(onFilter) {
   filterGroup.appendChild(label);
 
   // Set first date (map start date)
-  const firstDate = new Date("2025-06-13");
+  const firstDate = new Date("2025-06-12");
   // Use window.warticleLastDate if set, otherwise today
   let lastDate = window.warticleLastDate instanceof Date ? window.warticleLastDate : new Date();
   // Calculate total days between first and last date
   const totalDays = Math.max(0, Math.floor((lastDate - firstDate) / (1000 * 60 * 60 * 24)));
 
   // Persian label for first date
-  const firstDateLabel = "از ۱۳ ژوئن ۲۰۲۵";
+  const firstDateLabel = "از ۱۲ ژوئن ۲۰۲۵";
 
   // Format dates as yyyy-mm-dd for input fields
   function toInputDateString(date) {
