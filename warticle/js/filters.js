@@ -5,18 +5,17 @@ import { setURLFromUI } from './queries.js';
 import { getMapInstance } from './map.js';
 import { toggleMarkerLabels } from './marker-label.js';
 
-// Filter entries by time
-export function filterByTime(entries, days) {
-  if (!days) return entries;
-
-  const now = new Date();
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - parseInt(days, 10));
-
+// Filter entries by date range (inclusive)
+export function filterByTime(entries, startDate, endDate) {
+  if (!startDate || !endDate) return entries;
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  // Set end to end of day for inclusivity
+  end.setHours(23, 59, 59, 999);
   return entries.filter((entry) => {
     if (!entry.date) return false;
     const entryDate = new Date(entry.date);
-    return entryDate >= cutoffDate;
+    return entryDate >= start && entryDate <= end;
   });
 }
 
@@ -48,8 +47,11 @@ export function applyFilters(options = {}) {
 
   // If getting values from UI
   if (config.fromUI) {
-    // Get time filter value
-    config.timeValue = document.getElementById("timeFilter").value;
+    // Get start and end date values from the new date fields
+    const startField = document.querySelector('.time-fields-wrapper .date-group:first-child input[type="date"]');
+    const endField = document.querySelector('.time-fields-wrapper .date-group:last-child input[type="date"]');
+    config.startDate = startField ? startField.value : null;
+    config.endDate = endField ? endField.value : null;
 
     // Get selected type values
     config.selectedTypes = Array.from(
@@ -67,9 +69,9 @@ export function applyFilters(options = {}) {
   // Apply filters to data
   let filteredData = config.data;
 
-  // Apply time filter if specified
-  if (config.timeValue) {
-    filteredData = filterByTime(filteredData, config.timeValue);
+  // Apply time filter if both start and end dates are specified
+  if (config.startDate && config.endDate) {
+    filteredData = filterByTime(filteredData, config.startDate, config.endDate);
   }
 
   // Apply type filter if specified

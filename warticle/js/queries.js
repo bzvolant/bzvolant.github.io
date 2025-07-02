@@ -6,7 +6,11 @@ export function handleURLFilters(action) {
   switch (action) {
     case "saveToURL":
       // Get filter values from UI
-      const selectedTime = document.getElementById("timeFilter").value;
+      // Get start and end date values from the new date fields
+      const startFieldEl = document.querySelector('.time-fields-wrapper .date-group:first-child input[type="date"]');
+      const endFieldEl = document.querySelector('.time-fields-wrapper .date-group:last-child input[type="date"]');
+      const selectedStart = startFieldEl ? startFieldEl.value : "";
+      const selectedEnd = endFieldEl ? endFieldEl.value : "";
       const selectedTypes = Array.from(
         document.querySelectorAll(
           "#siteTypeFilterContainer input[type=checkbox]:checked"
@@ -16,11 +20,16 @@ export function handleURLFilters(action) {
       // Update URL parameters
       const saveParams = new URLSearchParams(window.location.search);
 
-      // Handle time filter
-      if (selectedTime) {
-        saveParams.set("time", selectedTime);
+      // Handle time filter (date range)
+      if (selectedStart) {
+        saveParams.set("start", selectedStart);
       } else {
-        saveParams.delete("time");
+        saveParams.delete("start");
+      }
+      if (selectedEnd) {
+        saveParams.set("end", selectedEnd);
+      } else {
+        saveParams.delete("end");
       }
 
       // Handle type filter
@@ -37,21 +46,22 @@ export function handleURLFilters(action) {
         `${window.location.pathname}?${saveParams.toString()}`
       );
 
-      return { selectedTime, selectedTypes };
+      return { selectedStart, selectedEnd, selectedTypes };
 
     case "loadFromURL":
       // Read parameters from URL
       const loadParams = new URLSearchParams(window.location.search);
-      const timeValue = loadParams.get("time");
+      const startValue = loadParams.get("start");
+      const endValue = loadParams.get("end");
       const typeValues = loadParams.get("type")
         ? loadParams.get("type").split(",")
         : [];
 
-      // Update time dropdown
-      const timeDropdown = document.getElementById("timeFilter");
-      if (timeValue) {
-        timeDropdown.value = timeValue;
-      }
+      // Update date fields
+      const startFieldEl2 = document.querySelector('.time-fields-wrapper .date-group:first-child input[type="date"]');
+      const endFieldEl2 = document.querySelector('.time-fields-wrapper .date-group:last-child input[type="date"]');
+      if (startFieldEl2 && startValue) startFieldEl2.value = startValue;
+      if (endFieldEl2 && endValue) endFieldEl2.value = endValue;
 
       // Update type checkboxes
       const typeCheckboxes = document.querySelectorAll(
@@ -62,7 +72,7 @@ export function handleURLFilters(action) {
       });
 
       // Apply filters without updating URL again
-      if (!isApplyingFilters && (timeValue || typeValues.length > 0)) {
+      if (!isApplyingFilters && ((startValue && endValue) || typeValues.length > 0)) {
         isApplyingFilters = true;
         // Use stored data for filtering
         if (window.originalData) {
@@ -70,7 +80,8 @@ export function handleURLFilters(action) {
           import('./filters.js').then(({ applyFilters }) => {
             applyFilters({
               data: window.originalData,
-              timeValue: timeValue,
+              startDate: startValue,
+              endDate: endValue,
               selectedTypes: typeValues,
               updateURL: false,
               fromUI: false,
@@ -80,12 +91,12 @@ export function handleURLFilters(action) {
         }
       }
 
-      return { timeValue, typeValues };
+      return { startValue, endValue, typeValues };
 
     case "checkURLFilters":
       // Check if URL has filter parameters
       const checkParams = new URLSearchParams(window.location.search);
-      const hasTimeFilter = checkParams.has("time");
+      const hasTimeFilter = checkParams.has("start") && checkParams.has("end");
       const hasTypeFilter = checkParams.has("type");
 
       return { hasTimeFilter, hasTypeFilter };

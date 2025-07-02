@@ -18,6 +18,7 @@
 
 .filter-group-time {
   display: flex;
+  flex-direction: column;
   gap: 12px;
   background-color: rgba(245, 245, 245, 0.8);
   padding: 8px;
@@ -45,7 +46,17 @@
   display: block;
   /* margin-bottom: 8px; */
 }
-
+.time-fields-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 5px;
+}
+.date-group {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
 .checkbox-container {
   display: flex;
   flex-direction: column;

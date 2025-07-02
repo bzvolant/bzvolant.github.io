@@ -137,34 +137,85 @@ export function createTimeFilter(onFilter) {
   label.textContent = "فیلتر بر اساس زمان:"; // Farsi translation
   filterGroup.appendChild(label);
 
-  const select = document.createElement("select");
-  select.id = "timeFilter";
-  select.className = "dropdown";
-  filterGroup.appendChild(select);
+  // Set first date (map start date)
+  const firstDate = new Date("2025-06-13");
+  // Use window.warticleLastDate if set, otherwise today
+  let lastDate = window.warticleLastDate instanceof Date ? window.warticleLastDate : new Date();
+  // Calculate total days between first and last date
+  const totalDays = Math.max(0, Math.floor((lastDate - firstDate) / (1000 * 60 * 60 * 24)));
 
-  const options = [
-    { value: "", text: "ابتدا تا کنون" },
-    { value: "1", text: "۲۴ ساعت گذشته" },
-    { value: "2", text: "۲ روز گذشته" },
-    { value: "3", text: "۳ روز گذشته" },
-    { value: "7", text: "۷ روز گذشته" },
-    { value: "14", text: "۱۴ روز گذشته" },
-    { value: "30", text: "۳۰ روز گذشته" },
-  ];
+  // Persian label for first date
+  const firstDateLabel = "از ۱۳ ژوئن ۲۰۲۵";
 
-  options.forEach((option) => {
-    const optEl = document.createElement("option");
-    optEl.value = option.value;
-    optEl.textContent = option.text; // Numbers are already in Persian
-    select.appendChild(optEl);
+  // Format dates as yyyy-mm-dd for input fields
+  function toInputDateString(date) {
+    return date.toISOString().slice(0, 10);
+  }
+
+  // Create start date field (user can select from 13 June 2025 to lastDate)
+
+  // --- Vertically organized time filter fields using CSS classes only ---
+  const timeFieldsWrapper = document.createElement("div");
+  timeFieldsWrapper.className = "time-fields-wrapper";
+
+  // Start date group
+  const startGroup = document.createElement("div");
+  startGroup.className = "date-group";
+
+  const startFieldLabel = document.createElement("label");
+  startFieldLabel.className = "filter-label";
+  startFieldLabel.textContent = "از:";
+  startGroup.appendChild(startFieldLabel);
+
+  const startField = document.createElement("input");
+  startField.type = "date";
+  startField.className = "date-field";
+  startField.value = toInputDateString(firstDate);
+  startField.min = toInputDateString(firstDate);
+  startField.max = toInputDateString(lastDate);
+  startGroup.appendChild(startField);
+
+  // End date group
+  const endGroup = document.createElement("div");
+  endGroup.className = "date-group";
+
+  const endFieldLabel = document.createElement("label");
+  endFieldLabel.className = "filter-label";
+  endFieldLabel.textContent = "تا:";
+  endGroup.appendChild(endFieldLabel);
+
+  const endField = document.createElement("input");
+  endField.type = "date";
+  endField.className = "date-field";
+  endField.value = toInputDateString(lastDate);
+  endField.min = toInputDateString(firstDate);
+  endField.max = toInputDateString(lastDate);
+  endGroup.appendChild(endField);
+
+  // Add both groups to wrapper (vertical)
+  timeFieldsWrapper.appendChild(startGroup);
+  timeFieldsWrapper.appendChild(endGroup);
+
+  // Place the date fields wrapper directly after the filter title
+  label.insertAdjacentElement('afterend', timeFieldsWrapper);
+
+  // Add event listeners for filter change and to keep dates in valid order
+  startField.addEventListener("change", function () {
+    if (endField.value < startField.value) {
+      endField.value = startField.value;
+    }
+    endField.min = startField.value;
+    onFilter();
   });
-
-  // Add event listener for filter change
-  select.addEventListener("change", function () {
+  endField.addEventListener("change", function () {
+    if (endField.value < startField.value) {
+      startField.value = endField.value;
+    }
     onFilter();
   });
 
-  return select;
+  // Optionally, return both fields for further use
+  return { startField, endField };
 }
 
 // Create label toggle UI with initial state option
